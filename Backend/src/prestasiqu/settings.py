@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'account',
 ]
 
 MIDDLEWARE = [
@@ -67,6 +68,7 @@ TEMPLATES = [
     },
 ]
 
+AUTH_USER_MODEL = 'account.User'
 WSGI_APPLICATION = 'prestasiqu.wsgi.application'
 
 
