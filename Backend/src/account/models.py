@@ -2,6 +2,7 @@ import uuid
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 from .manager import UserManager
+from biodata.models import Biodata
 
 class User(AbstractBaseUser):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -11,6 +12,7 @@ class User(AbstractBaseUser):
     staff = models.BooleanField(default=False)
     admin = models.BooleanField(default=False)
     supervisor = models.BooleanField(default=False)
+    profile = models.OneToOneField(Biodata, on_delete=models.CASCADE)
 
     USERNAME_FIELD = 'nomerinduk'
     REQUIRED_FIELDS = [] # Email & Password are required by default.
