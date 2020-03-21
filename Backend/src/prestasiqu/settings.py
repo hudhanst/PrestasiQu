@@ -37,9 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'knox',
     'account',
     'biodata',
 ]
+
+REST_FRAMEWORK={
+    'DEFAULT_AUTHENTICATION_CLASSES':('knox.auth.TokenAuthentication',)#this work becuase adding "," make django conseider this is a tupple or this will consider as a string
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
