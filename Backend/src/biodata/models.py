@@ -1,5 +1,6 @@
 import uuid
 from django.db import models
+from prestasiqu.CustomModelSForms import CharNullField, EmailNullField
 
 class Biodata(models.Model):
     AGAMA_CHOICES=[
@@ -41,8 +42,10 @@ class Biodata(models.Model):
     TempatLahir= models.CharField(max_length=50)
     TanggalLahir= models.DateField()
     Alamat= models.CharField(max_length=300, blank=True)
-    NomerTLP = models.CharField(max_length=15, unique=True, blank=True)
-    Email = models.EmailField(max_length=100, unique=True, blank=True)
+    # NomerTLP = models.CharField(max_length=15, unique=True, blank=True, null=True, default=None)
+    NomerTLP = CharNullField(max_length=15, unique=True, blank=True, null=True, default=None)
+    # Email = models.EmailField(max_length=100, unique=True, blank=True, null=True, default=None)
+    Email = EmailNullField(max_length=100, unique=True, blank=True, null=True, default=None)
     PendidikanTerakhir = models.CharField(max_length=5, blank=True, choices=JENJANG_PENDIDIKAN)
     InstansiPendidikanTerakhir = models.CharField(max_length=200, blank=True)
     Point = models.SmallIntegerField(default=300)
