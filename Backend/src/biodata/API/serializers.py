@@ -17,6 +17,9 @@ class BiodataDetailSerializer(serializers.ModelSerializer):
         model = Biodata
         fields = ('NomerInduk','Nama','Agama','TempatLahir','TanggalLahir','Alamat','NomerTLP','Email','PendidikanTerakhir','InstansiPendidikanTerakhir','Point','Status','Profilepicture')
 
+class DeleteBiodataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Biodata
 class CreateStaffBiodataSerializer(serializers.ModelSerializer):
     """
     CREATE STAFF BIODATA

@@ -4,7 +4,7 @@ from rest_framework.response import Response
 # from rest_framework.generics import RetrieveAPIView,ListAPIView
 
 from ..models import Biodata
-from .serializers import BiodataSerializer, BiodataDetailSerializer, CreateStaffBiodataSerializer
+from .serializers import BiodataSerializer, BiodataDetailSerializer, CreateStaffBiodataSerializer, DeleteBiodataSerializer
 from account.API.permission import IsAdmin
 import logging
 
@@ -24,6 +24,14 @@ class GetBiodataDetailAPI(generics.RetrieveAPIView):
     ]
     serializer_class = BiodataDetailSerializer
     queryset = Biodata.objects.all()
+
+class DeleteBiodataAPI(generics.DestroyAPIView):
+    permission_classes=[
+        permissions.AllowAny,
+    ]
+    serializer_class=DeleteBiodataSerializer
+    queryset = Biodata.objects.all()
+
 
 # class CreateSiswaBiodataAPI():
 
