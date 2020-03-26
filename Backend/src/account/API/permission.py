@@ -45,3 +45,26 @@ class IsSupervisor(BasePermission):
         if request.user.supervisor is True:
             return True
         return False
+
+class IsTrue(BasePermission):
+    """
+    debug always true
+    """
+    message = 'True'
+    condition= True
+    def has_permission(self, request, view):
+        # logging.warning(f'{request.user}')
+        if self.condition is True:
+            return True
+        return False
+class IsFalse(BasePermission):
+    """
+    debug always false
+    """
+    message = 'False'
+    condition= False
+    def has_permission(self, request, view):
+        # logging.warning(f'{request.user}')
+        if self.condition is True:
+            return True
+        return False
