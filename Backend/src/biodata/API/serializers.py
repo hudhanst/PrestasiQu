@@ -20,33 +20,43 @@ class BiodataDetailSerializer(serializers.ModelSerializer):
 class DeleteBiodataSerializer(serializers.ModelSerializer):
     class Meta:
         model = Biodata
+class UpdateStaffBiodataSerializer(serializers.ModelSerializer):
+    """
+    UPDATE STAFF BIODATA
+    """
+    class Meta:
+        staff_choices=[
+            ('Guru Aktif','Guru Aktif'),
+            ('Staf Aktif','Staf Aktif')
+            ]
+        model = Biodata
+        fields = ['id','NomerInduk','Nama','Agama','TempatLahir','TanggalLahir','Alamat','NomerTLP','Email','PendidikanTerakhir','InstansiPendidikanTerakhir','Status','Profilepicture']
+        extra_kwargs = {
+            'Status' : {'choices':staff_choices, 'required':True},
+            'NomerInduk' : {'read_only':True},
+        }
+        # fields = "__all__"
+class Update_Biodata_Full_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Biodata
+        fields = "__all__"
 class CreateStaffBiodataSerializer(serializers.ModelSerializer):
     """
     CREATE STAFF BIODATA
     """
-    staff_choices=[
-        ('Guru Aktif','Guru Aktif'),
-        ('Staf Aktif','Staf Aktif')
-    ]
+    # Status = serializers.ChoiceField(choices=staff_choices, required=True)
     class Meta:
+        staff_choices=[
+            ('Guru Aktif','Guru Aktif'),
+            ('Staf Aktif','Staf Aktif')
+            ]
         model = Biodata
         # fields = ['NomerInduk','Nama','TempatLahir','TanggalLahir','NomerTLP','Email']
-        fields = ['NomerInduk','Nama','Agama','TempatLahir','TanggalLahir','Alamat','NomerTLP','Email','PendidikanTerakhir','InstansiPendidikanTerakhir','Status','Profilepicture']
+        fields = ['id','NomerInduk','Nama','Agama','TempatLahir','TanggalLahir','Alamat','NomerTLP','Email','PendidikanTerakhir','InstansiPendidikanTerakhir','Status','Profilepicture']
         # fields = "__all__"
-        # def create(self, validated_data):
-        #     biodata = Biodata.objects.create_user(
-        #         NomerInduk = validated_data['NomerInduk'],
-        #         Nama = validated_data['Nama'],
-        #         TempatLahir = validated_data['TempatLahir'],
-        #         TanggalLahir = validated_data['TanggalLahir'],
-        #         Alamatt = validated_data['Alamat'],
-        #         NomerTLP = validated_data['NomerTLP'],
-        #         Email = validated_data['Email'],
-        #         Status = validated_data['Status'],
-        #     )
-            # biodata.save()
-            # return biodata
-
+        extra_kwargs = {
+            'Status' : {'choices':staff_choices, 'required':True},
+        }
 
 # class CreateSiswaBiodataSerializer(serializers.ModelSerializer):
 #     """
