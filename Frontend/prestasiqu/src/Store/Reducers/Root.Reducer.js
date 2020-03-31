@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux'
 
 import Auth from './Auth.Reducer'
-
+import Messages from './Messages.Reducer'
 const RootReducer = combineReducers({
-    Auth
+    Auth, Messages
 })
 
 export default RootReducer

@@ -8,7 +8,7 @@ const BaseRouter = () =>{
     return(
         <div>
             {/* <PrivateRoute exact path="/" component={content}/> */}
-            <Route exact path="/content" component={content}/>
+            <Route exact path="/" component={content}/>
             {/* <Route exact path="/login" component={Login}/> */}
             {/* <Route exact path="/" component={Logout}/> */}
         </div>

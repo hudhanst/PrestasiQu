@@ -7,8 +7,8 @@ const initialState={
     isLoading:false,
     user:null,
 }
-export default function(state=initialState, actions){
-    switch(actions.type){
+export default function(state=initialState, action){
+    switch(action.type){
         case USER_LOADING:
             return{
                 ...state,
@@ -25,7 +25,24 @@ export default function(state=initialState, actions){
                 ...state,
                 isLoading:false,
                 isAuthenticated:true,
-                user:null
+                user:action.payload
+            }
+        case LOGIN_SUCCESS:
+            localStorage.setItem('token',action.payload.token)
+            return{
+                ...state,
+                ...action.payload,
+                isAuthenticated:true,
+                isLoading:false,
+            }
+        case LOGOUT_SUCCESS:
+            localStorage.removeItem('token')
+            return{
+                ...state,
+                token:null,
+                user:null,
+                isAuthenticated:false,
+                isLoading:false,
             }
         default:
             return state
