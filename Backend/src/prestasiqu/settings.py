@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'account',
     'biodata',
+    'point',
+    'prestasi',
 ]
 
 REST_FRAMEWORK={
