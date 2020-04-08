@@ -8,7 +8,6 @@ class IsSiswa(BasePermission):
     """
     message = 'anda bukan siswa'
     def has_permission(self, request, view):
-        # logging.warning(f'{request.user}')
         if request.user.siswa is True:
             return True
         return False
@@ -19,7 +18,6 @@ class IsStaff(BasePermission):
     """
     message = 'anda bukan staf yang berwenang'
     def has_permission(self, request, view):
-        # logging.warning(f'{request.user}')
         if request.user.staff is True:
             return True
         return False
@@ -30,7 +28,6 @@ class IsAdmin(BasePermission):
     """
     message = 'anda bukan admin'
     def has_permission(self, request, view):
-        # logging.warning(f'{request.user}')
         if request.user.admin is True:
             return True
         return False
@@ -41,8 +38,16 @@ class IsSupervisor(BasePermission):
     """
     message = 'anda bukan supervisor'
     def has_permission(self, request, view):
-        # logging.warning(f'{request.user}')
         if request.user.supervisor is True:
+            return True
+        return False
+class IsSuperUser(BasePermission):
+    """
+    CEK APAKAH SUPERUSER APA BUKAN
+    """
+    message = 'anda bukan superuser'
+    def has_permission(self, request, view):
+        if request.user.superuser is True:
             return True
         return False
 
@@ -53,7 +58,6 @@ class IsTrue(BasePermission):
     message = 'True'
     condition= True
     def has_permission(self, request, view):
-        # logging.warning(f'{request.user}')
         if self.condition is True:
             return True
         return False
