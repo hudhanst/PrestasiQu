@@ -10,6 +10,8 @@ const PrivateRoute=({component:Component, auth,...rest})=>(
         }else if(!auth.isAuthenticated){
             return <Redirect to="/login" />
         }else{
+            //TODO console.log(rest)
+            //TODO if(! "rest" == "rest" api response permission is false return to home )
             return <Component {...props} />
         }
     }}/>
