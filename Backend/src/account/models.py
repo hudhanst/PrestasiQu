@@ -12,6 +12,7 @@ class User(AbstractBaseUser):
     staff = models.BooleanField(default=False)
     admin = models.BooleanField(default=False)
     supervisor = models.BooleanField(default=False)
+    superuser = models.BooleanField(default=False)
     profile = models.OneToOneField(Biodata, on_delete=models.CASCADE)
 
     USERNAME_FIELD = 'nomerinduk'
@@ -33,23 +34,28 @@ class User(AbstractBaseUser):
 
     @property
     def is_siswa(self):
-        "Is the user a member of staff?"
+        "Is the user a siswa?"
         return self.siswa
 
     @property
     def is_staff(self):
-        "Is the user a member of staff?"
+        "Is the user a staff?"
         return self.staff
 
     @property
     def is_admin(self):
-        "Is the user a admin member?"
+        "Is the user a admin?"
         return self.admin
 
     @property
     def is_supervisor(self):
-        "Is the user a member of staff?"
+        "Is the user a supervisor?"
         return self.supervisor
+
+    @property
+    def is_supervisor(self):
+        "Is the user a superuser?"
+        return self.superuser
 
     @property
     def is_active(self):
