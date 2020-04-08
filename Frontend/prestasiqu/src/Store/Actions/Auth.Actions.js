@@ -1,7 +1,8 @@
 import axios from 'axios'
-import {USER_LOADING, USER_LOADED, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS} from './Type.Actions'
+import {USER_LOADING, USER_LOADED, CONVERT_TO_USER, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, USER_EXPIRED} from './Type.Actions'
 import {returnErrors} from './Messages.Actions'
 import {Redirect} from 'react-router-dom'
+import { useReducer } from 'react'
 export const tokenConfig = (getState) =>{
     const token = getState().Auth.token //get token from state
     const config = {//Header request
@@ -37,7 +38,7 @@ export const LoadUser = () => (dispatch, getState)=>{
         console.log(err)
     })
 }
-
+//TODO export const LoadPermission
 export const LogIn = (nomerinduk, password) => (dispatch) =>{
     const body =JSON.stringify({nomerinduk, password})
     const config={
@@ -53,7 +54,7 @@ export const LogIn = (nomerinduk, password) => (dispatch) =>{
             payload:res.data
         })
     }).catch(err=>{
-        console.log(nomerinduk, password, config)
+        // console.log(nomerinduk, password, config)
         // dispatch(returnErrors(err.response.data, err.response.status))
         dispatch({type:LOGIN_FAIL})
     })
@@ -65,8 +66,18 @@ export const LogOut = () =>(dispatch, getState) =>{
         dispatch({
             type: LOGOUT_SUCCESS
         })
-        // return <Redirect to="/login" />
     }).catch(err=>{
-        console.log(err)
+        if(err.response.status === 401){
+            dispatch({
+                type: USER_EXPIRED
+            })
+        }else{
+            console.log(err)
+        }
+    })
+}
+export const GetUserFromUserData = () =>(dispatch)=>{
+    dispatch({
+        type: CONVERT_TO_USER
     })
 }
