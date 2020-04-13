@@ -12,9 +12,9 @@ import logging
 
 class GetBiodataAPI(generics.ListAPIView):
     permission_classes=[
-        # permissions.AllowAny,
-        permissions.IsAuthenticated, 
-        IsAdmin,
+        permissions.AllowAny,
+        # permissions.IsAuthenticated, 
+        # IsAdmin,
     ]
     serializer_class = BiodataSerializer
     queryset = Biodata.objects.all()

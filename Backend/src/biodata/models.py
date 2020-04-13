@@ -53,4 +53,4 @@ class Biodata(models.Model):
     Profilepicture = models.ImageField(upload_to='profilepicture', blank=True, default='default.jpg')
 
     def __str__(self):
-        return f"{self.Status} | {self.NomerInduk} | {self.Nama}"
+        return self.NomerInduk
