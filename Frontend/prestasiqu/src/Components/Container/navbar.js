@@ -38,34 +38,34 @@ class Navbar extends React.Component{
                                         Biodata
                                     </a>
                                     <div className="dropdown-menu custom-dropdown-menu" id="biodatadropdown">
-                                        <a className="dropdown-item custom-dropdown-item" href="#">Data Siswa</a>
-                                        <a className="dropdown-item custom-dropdown-item" href="/guru">Data Guru</a>
-                                        <a className="dropdown-item custom-dropdown-item" href="#">Data Admin</a>
-                                        <a className="dropdown-item custom-dropdown-item" href="#">Data Kelas</a>
-                                        <a className="dropdown-item custom-dropdown-item" href="#">Data Instansi</a>
-                                        <a className="dropdown-item custom-dropdown-item" href="#">Data Pelanggaran</a>
+                                        <a className="dropdown-item custom-dropdown-item" href="/biodata/data-siswa">Data Siswa</a>
+                                        <a className="dropdown-item custom-dropdown-item" href="/biodata/data-guru">Data Guru</a>
+                                        <a className="dropdown-item custom-dropdown-item" href="/biodata/data-admin">Data Admin</a>
+                                        <a className="dropdown-item custom-dropdown-item" href="/biodata/data-kelas">Data Kelas</a>
+                                        <a className="dropdown-item custom-dropdown-item" href="/biodata/data-instansi">Data Instansi</a>
+                                        <a className="dropdown-item custom-dropdown-item" href="/biodata/data-pelanggaran">Data Pelanggaran</a>
                                     </div>
                                 </li>
                                 <li className="nav-item dropdown active custom-nav-item">
-                                    <a className="nav-link" href="#">
+                                    <a className="nav-link" href="/prestasi">
                                         Prestasi
                                     </a>
                                     <div className="dropdown-menu custom-dropdown-menu">
-                                        <a className="dropdown-item custom-dropdown-item" href="#">Pengajuan Prestasi</a>
-                                        <a className="dropdown-item custom-dropdown-item" href="#">ACC Pengajuan Prestasi</a>
+                                        <a className="dropdown-item custom-dropdown-item" href="/prestasi/pengajuan-prestasi">Pengajuan Prestasi</a>
+                                        <a className="dropdown-item custom-dropdown-item" href="/prestasi/penerimaan-pengajuan-prestasi">ACC Pengajuan Prestasi</a>
                                     </div>
                                 </li>
                                 <li className="nav-item dropdown active custom-nav-item">
-                                    <a className="nav-link" href="#">
+                                    <a className="nav-link" href="/point">
                                         Point
                                     </a>
                                     <div className="dropdown-menu custom-dropdown-menu">
-                                        <a className="dropdown-item custom-dropdown-item" href="#">Pengajuan Point</a>
-                                        <a className="dropdown-item custom-dropdown-item" href="#">ACC Pengajuan Point</a>
+                                        <a className="dropdown-item custom-dropdown-item" href="/point/pengajuan-point">Pengajuan Point</a>
+                                        <a className="dropdown-item custom-dropdown-item" href="/point/penerimaan-pengajuan-point">ACC Pengajuan Point</a>
                                     </div>
                                 </li>
                                 <li className="nav-item active custom-nav-item">
-                                    <a className="nav-link" href="#/logout">Logout</a>
+                                    <a className="nav-link" href="/logout">Logout</a>
                                 </li>
                             </ul>
                         </div>

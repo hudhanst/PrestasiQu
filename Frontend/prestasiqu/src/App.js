@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 import {connect} from 'react-redux'
 // import Store from './Store/Store'
 
-import {HashRouter as Router, Switch, Route, useLocation} from 'react-router-dom'
+import {BrowserRouter as Router, Switch, Route, useLocation} from 'react-router-dom'
 // import PrivateRoute from './Security/PrivateRoute'
 
 import {LoadUser, GetUserFromUserData} from './Store/Actions/Auth.Actions'
@@ -40,6 +40,7 @@ class App extends React.Component{
             <div className="container custom-container-setting">
             {/* <Switch> */}
               {/* <PrivateRoute exact path="/" component={Home}/> */}
+              {/* <Route exact path="/" component={Home}/> */}
               {/* <Route exact path="/login" component={Login}/> */}
               <BaseRouter  />
             {/* </Switch> */}
