@@ -9,6 +9,9 @@ body {
   z-index: 0;
   overflow: auto;
 }
+input:read-only{
+  background-color: #E0E0E0;
+}
 .btn-colorize-green{
   height: auto;
   /* width: 96%; */
@@ -24,6 +27,15 @@ body {
   border: none;
   border-radius: 4px;
   padding: 10 ; 
+}
+.Input-as-Info{
+  height: auto;
+  width: 95%;
+  padding: 10px;
+  margin: 1%;
+  margin-bottom: 20px;
+  border: none;
+  /* border: 1px solid red; */
 }
 .position-right{
   text-align: right;
@@ -60,6 +72,7 @@ body {
 /* Navbar-MENU */
 .custom-navbar{
   background-color: #FFEB3B;
+  z-index: 100;
 }
 .custom-nav-menu{
   width: 100%;
@@ -99,7 +112,7 @@ body {
 .custom-dropdown-item:hover{
   background-color: #607D8B;
 }
-/* END-Navbar-MENU */
+/* END*-Navbar-MENU */
 .dropdown:hover .dropdown-menu{
   display: block;
 }
@@ -107,7 +120,7 @@ body {
 
 /* CONTAINER */
 .custom-container-setting{
-  margin-top: 20px;
+  margin-top: 50px;
   background-color: #F5F5F5;
   box-shadow: 1px 1px 10px black;
   padding-top: 40px;
@@ -117,6 +130,18 @@ body {
 }
 /* END-CONTAINER */
 
+/* BIODATA */
+.biodata-img{
+  height: 200px;
+  width: 200px;
+  border: 10px solid black;
+  margin-left: 40%;
+  margin-bottom: 30px;
+  margin-top: -80px;
+  position: relative;
+  z-index: 1;
+}
+/* END-BIODATA */
 /* RESPONSIVE */
 /* //TODO when scroll navbar become fix */
 
