@@ -10,21 +10,21 @@ import Logout from './Components/Layout/Account/logout'
 
 import Home from './Components/Layout/Home'
 
-import Biodata from './Components/Layout/Biodata'
-import DataAdmin from './Components/Layout/Biodata.data_admin'
-import DataGuru from './Components/Layout/Biodata.data_guru'
-import DataInstansi from './Components/Layout/Biodata.data_instansi'
-import DataKelas from './Components/Layout/Biodata.data_kelas'
-import DataPelanggaran from './Components/Layout/Biodata.data_pelanggaran'
-import DataSiswa from './Components/Layout/Biodata.data_siswa'
+import Biodata from './Components/Layout/Biodata/Biodata'
+import DataAdmin from './Components/Layout/Biodata/Biodata.data_admin'
+import DataGuru from './Components/Layout/Biodata/Biodata.data_guru'
+import DataInstansi from './Components/Layout/Biodata/Biodata.data_instansi'
+import DataKelas from './Components/Layout/Biodata/Biodata.data_kelas'
+import DataPelanggaran from './Components/Layout/Biodata/Biodata.data_pelanggaran'
+import DataSiswa from './Components/Layout/Biodata/Biodata.data_siswa'
 
-import Point from './Components/Layout/Point'
-import PointPenerimaan from './Components/Layout/Point.penerimaan_pengajuan_point'
-import PointPengajuan from './Components/Layout/Point.pengajuan_point'
+import Point from './Components/Layout/Point/Point'
+import PointPenerimaan from './Components/Layout/Point/Point.penerimaan_pengajuan_point'
+import PointPengajuan from './Components/Layout/Point/Point.pengajuan_point'
 
-import Prestasi from './Components/Layout/Prestasi'
-import PrestasiPenerimaan from './Components/Layout/Prestasi.penerimaan_pengajuan_prestasi'
-import PrestasiPengajuan from './Components/Layout/Prestasi.pengajuan_prestasi'
+import Prestasi from './Components/Layout/Prestasi/Prestasi'
+import PrestasiPenerimaan from './Components/Layout/Prestasi/Prestasi.penerimaan_pengajuan_prestasi'
+import PrestasiPengajuan from './Components/Layout/Prestasi/Prestasi.pengajuan_prestasi'
 
 // class BaseRouter extends React.Component{
 //     componentDidMount(){
