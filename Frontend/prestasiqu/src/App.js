@@ -14,31 +14,28 @@ import Navbar from './Components/Container/navbar'
 // import Login from './Components/Layout/Account/login'
 
 class App extends React.Component{
-  UserCheck(){
-    // console.log(localStorage.getItem('token'))
-    const {isAuthenticated, user, token, userdata} = this.props.auth
-    // console.log(token,isAuthenticated, user,userdata)
-    if (user === null && userdata != null){
-      this.props.GetUserFromUserData()
-      console.log("unpurify", user)
-    }else if(user === null && userdata === null ){
-      this.props.LoadUser()//TODO update loaduser() not saveing into userdata
-    }
-  }
+  // UserCheck(){
+  //   // console.log(localStorage.getItem('token'))
+  //   const {isAuthenticated, user, token, userdata} = this.props.auth
+  //   // console.log(token,isAuthenticated, user,userdata)
+  //   if (user === null && userdata != null){
+  //     this.props.GetUserFromUserData()
+  //     console.log("unpurify", user)
+  //   }else if(user === null && userdata === null ){
+  //     this.props.LoadUser()//TODO update loaduser() not saveing into userdata
+  //   }
+  // }
   componentDidMount(){
-    this.UserCheck()
+    this.props.LoadUser()
   }
   render(){
-    // let correntlylocation = useLocation()
-    // console.log(correntlylocation)
     return(
       <div className="App">
-      {/* <Provider store={Store}> */}
         <Router>
           <Fragment>
             <Navbar />
             <div className="container custom-container-setting">
-            {/* <Switch> */}
+              {/* <Switch> */}
               {/* <PrivateRoute exact path="/" component={Home}/> */}
               {/* <Route exact path="/" component={Home}/> */}
               {/* <Route exact path="/login" component={Login}/> */}
@@ -47,7 +44,6 @@ class App extends React.Component{
             </div>
           </Fragment>
         </Router>
-      {/* </Provider> */}
        </div> 
     )
   }

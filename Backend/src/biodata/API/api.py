@@ -49,9 +49,6 @@ class UpdateBiodataAPI(generics.RetrieveUpdateAPIView):
         # WhoAccsesit
         # IsAdmin
     ]
-    # accs = WhoAccsesit.WhoAccses_it('self')
-    # logging.warning(f'--{permission_classes[1]}')
-    # serializer_class=UpdateStaffBiodataSerializer
     def get_serializer_class(self):
         if self.request.user.admin:
             return Update_Biodata_Full_Serializer
@@ -68,14 +65,3 @@ class CreateStaffBiodataAPI(generics.CreateAPIView):
         # IsAdmin
     ]
     serializer_class = CreateStaffBiodataSerializer
-    # def post(self, request, *args, **kwargs):
-    #     serializer=self.get_serializer(data=request.data)
-    #     if serializer.is_valid():
-    #         serializer.validated_data['Status']='Guru Aktif'
-    #         serializer.save()
-    #         biodata = serializer.validated_data
-    #     else:
-    #         return Response("error")
-    #     return Response({
-    #         "user created":CreateStaffBiodataSerializer(biodata, context=self.get_serializer_context()).data,
-    #     })

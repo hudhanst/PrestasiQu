@@ -12,6 +12,10 @@ class Biodata extends React.Component{
         }
     }
     render(){
+        // return(
+        //     <div></div>
+        // )
+
         const {Biodata, Account} = this.props.biodata
         return(
             <div className='Biodata'>
@@ -65,5 +69,5 @@ const mapStateToProps=state=>({
     biodata:state.Biodata,
     auth:state.Auth
   })
-  export default connect(mapStateToProps,{LoadBiodata, LoadBiodataAccount})(Biodata)
-  
+
+export default connect(mapStateToProps,{LoadBiodata, LoadBiodataAccount})(Biodata)

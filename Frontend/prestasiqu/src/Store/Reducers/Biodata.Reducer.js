@@ -1,7 +1,8 @@
-import {BIODATA_LOADED} from '../Actions/Type.Actions'
+import {BIODATA_LOADED, BIODATA_ACCOUNT_LOADED} from '../Actions/Type.Actions'
 
 const initialState ={
-    Biodata : null
+    Biodata : null,
+    Account : null,
 }
 
 export default function(state = initialState, action){
@@ -10,6 +11,11 @@ export default function(state = initialState, action){
             return{
                 ...state,
                 Biodata : action.payload
+            }
+        case BIODATA_ACCOUNT_LOADED:
+            return{
+                ...state,
+                Account : action.payload
             }
         default:return state
     }

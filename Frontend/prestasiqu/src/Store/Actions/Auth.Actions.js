@@ -54,9 +54,9 @@ export const LogIn = (nomerinduk, password) => (dispatch) =>{
             payload:res.data
         })
     }).catch(err=>{
+        console.log(err)
         // console.log(nomerinduk, password, config)
         // dispatch(returnErrors(err.response.data, err.response.status))
-        dispatch({type:LOGIN_FAIL})
     })
 }
 
