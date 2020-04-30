@@ -1,13 +1,35 @@
 import axios from 'axios'
-import {USER_LOADING, USER_LOADED, CONVERT_TO_USER, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, USER_EXPIRED} from './Type.Actions'
-import {returnErrors} from './Messages.Actions'
-import {Redirect} from 'react-router-dom'
-import { useReducer } from 'react'
+
+import {ErrorMassages} from './Messages.Actions'
+import {
+    USER_LOADING,
+    USER_LOADED,
+    // CONVERT_TO_USER,
+    LOGIN_SUCCESS,
+    LOGOUT_SUCCESS,
+    USER_EXPIRED,
+    ERROR_MASSAGES,
+} from './Type.Actions'
+
 export const tokenConfig = (getState) =>{
     const token = getState().Auth.token //get token from state
     const config = {//Header request
         headers:{
             'Content-Type':'application/json'
+        }
+    }
+    if(token){
+        config.headers['Authorization'] = `Token ${token}`
+    }
+    return config
+}
+
+export const tokenConfigmultipleform = (getState) =>{
+    const token = getState().Auth.token //get token from state
+    const config = {//Header request
+        headers:{
+            'Content-Type':'multipart/form-data'
+            // 'Content-Type':'multipart/form-data;boundary=----WebKitFormBoundaryyrV7KO0BoCBuDbTL'
         }
     }
     if(token){
@@ -54,7 +76,8 @@ export const LogIn = (nomerinduk, password) => (dispatch) =>{
             payload:res.data
         })
     }).catch(err=>{
-        console.log(err)
+        // console.log(err.response.data)
+        dispatch(ErrorMassages(err.response.data))
         // console.log(nomerinduk, password, config)
         // dispatch(returnErrors(err.response.data, err.response.status))
     })
@@ -76,8 +99,8 @@ export const LogOut = () =>(dispatch, getState) =>{
         }
     })
 }
-export const GetUserFromUserData = () =>(dispatch)=>{
-    dispatch({
-        type: CONVERT_TO_USER
-    })
-}
+// export const GetUserFromUserData = () =>(dispatch)=>{
+//     dispatch({
+//         type: CONVERT_TO_USER
+//     })
+// }

@@ -12,6 +12,9 @@ body {
 input:read-only{
   background-color: #E0E0E0;
 }
+select:disabled{
+  background-color: #E0E0E0;
+}
 .btn-colorize-green{
   height: auto;
   /* width: 96%; */
@@ -28,6 +31,15 @@ input:read-only{
   border-radius: 4px;
   padding: 10 ; 
 }
+.btn-table-colorize-green{
+  height: auto;
+  font-size: auto;
+  text-align: center;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+
+}
 .Input-as-Info{
   height: auto;
   width: 95%;
@@ -37,6 +49,11 @@ input:read-only{
   border: none;
   /* border: 1px solid red; */
 }
+.Input-as-Update{
+  border: 1px solid grey;
+  background-color: white;
+  border-radius: 5px;
+}
 .position-right{
   text-align: right;
 }
@@ -45,14 +62,13 @@ input:read-only{
 }
 /* END-GLOBAL */
 
-/* LOGIN PAGE */
-.LoginPage{
-  margin-top: 1%;
-  margin-left: 10%;
-  margin-right: 10%;
-  /* margin-bottom: 10%; */
+/* BOOTSRAP-ADJUST */
+.modal-footer{
+  margin-top: 20px;
 }
-/* END-LOGIN PAGE */
+/* END-BOOTSRAP-ADJUST */
+
+
 
 /* NAVBAR */
 /* NAVBAR-LOGO */
@@ -118,6 +134,16 @@ input:read-only{
 }
 /* END-NAVBAR */
 
+/* ALERTS */
+.custom-alerts{
+  position: relative;
+  /* font-size: 18px; */
+  height: auto;
+  width: 80%;
+  margin:10px 0px 10px 10% ;
+}
+/* END-ALERTS */
+
 /* CONTAINER */
 .custom-container-setting{
   margin-top: 50px;
@@ -129,6 +155,15 @@ input:read-only{
   padding-bottom: 100px;
 }
 /* END-CONTAINER */
+
+/* LOGIN PAGE */
+.LoginPage{
+  margin-top: 1%;
+  margin-left: 10%;
+  margin-right: 10%;
+  /* margin-bottom: 10%; */
+}
+/* END-LOGIN PAGE */
 
 /* BIODATA */
 .biodata-img{
