@@ -63,9 +63,9 @@ class Get_Account_Detail_API(generics.RetrieveAPIView):
     # serializer_class = Get_Full_Account_Detail_Serializer
     def get_serializer_class(self):
         if self.request.user.admin:
-            # return Get_Full_Account_Detail_Serializer
-            return Get_Partial_Account_Detail_Serializer
-        # return Get_Partial_Account_Detail_Serializer
-        return Get_Full_Account_Detail_Serializer
+            return Get_Full_Account_Detail_Serializer
+            # return Get_Partial_Account_Detail_Serializer
+        return Get_Partial_Account_Detail_Serializer
+        # return Get_Full_Account_Detail_Serializer
 
     queryset = User.objects.all()

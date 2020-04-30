@@ -15,7 +15,7 @@ class BiodataDetailSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Biodata
-        fields = ('NomerInduk','Nama','Agama','TempatLahir','TanggalLahir','Alamat','NomerTLP','Email','PendidikanTerakhir','InstansiPendidikanTerakhir','Point','Status','Profilepicture')
+        fields = ('id','NomerInduk','Nama','Agama','TempatLahir','TanggalLahir','Alamat','NomerTLP','Email','PendidikanTerakhir','InstansiPendidikanTerakhir','Point','Status','Profilepicture')
 
 class DeleteBiodataSerializer(serializers.ModelSerializer):
     class Meta:
@@ -40,6 +40,7 @@ class Update_Biodata_Full_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Biodata
         fields = "__all__"
+        read_only_fields = ['NomerInduk','Point']
 class CreateStaffBiodataSerializer(serializers.ModelSerializer):
     """
     CREATE STAFF BIODATA
@@ -62,3 +63,7 @@ class CreateStaffBiodataSerializer(serializers.ModelSerializer):
 #     """
 #     CREATE SISWA BIODATA
 #     """
+class Get_List_Biodata_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Biodata
+        fields = ['id', 'NomerInduk', 'Nama']
