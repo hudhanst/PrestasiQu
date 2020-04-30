@@ -3,7 +3,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 import DataTableNotFound from '../DataTableNotFound'
-import BiodataDetail from './BiodataDetail'
+
 const BiodataDetail_DataSiswa = (ListBiodata) => {
 // class BiodataDetail_DataSiswa extends React.Component{
     // onChange=E=>console.log('hiu')

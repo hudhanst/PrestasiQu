@@ -14,7 +14,7 @@ import {
     _BUTTON_UPDATE_BIODATA_,
 } from './Type.Actions'
 
-import {tokenConfig, tokenConfigmultipleform, defualtheader} from './Auth.Actions'
+import {tokenConfig, tokenConfigmultipleform} from './Auth.Actions'
 
 export const LoadBiodata = (BiodataID) => (dispatch, getState)=>{
     axios.get(`http://localhost:8000/api/auth/biodata/${BiodataID}`, tokenConfig(getState))

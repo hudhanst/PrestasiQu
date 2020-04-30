@@ -41,14 +41,14 @@ class LoginStaffModal extends React.Component{
                                 <div className="form-group">
                                     <label>Nomer Induk</label>
                                     <div className="input-group">
-                                        <span className="input-group-text" id="basic-addon1"><img src={accountsvg} /></span>
+                                        <span className="input-group-text" id="basic-addon1"><img src={accountsvg} alt="logoaccount" /></span>
                                         <input className="form-control" type="text" name="nomerinduk" onChange={this.onChange} value={nomerinduk} placeholder="Nomer Registrasi / Nomer Induk" />
                                     </div>
                                 </div>
                                 <div className="form-group">
                                     <label>Password</label>
                                     <div className="input-group">
-                                        <span className="input-group-text" id="basic-addon1"><img src={locksvg} /></span>
+                                        <span className="input-group-text" id="basic-addon1"><img src={locksvg} alt="logopassword" /></span>
                                         <input className="form-control" type="password" name="password" onChange={this.onChange} value={password} placeholder="Password anda" />
                                     </div>
                                 </div>

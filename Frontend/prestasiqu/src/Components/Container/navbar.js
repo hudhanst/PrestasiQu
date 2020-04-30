@@ -1,14 +1,12 @@
 import React from 'react'
 
 import {connect} from 'react-redux'
+
 import {LogOut} from '../../Store/Actions/Auth.Actions'
-
-import {Link} from 'react-router-dom'
-
 
 class Navbar extends React.Component{
     render(){
-        const {isAuthenticated, user} = this.props.auth
+        const {isAuthenticated} = this.props.auth
         const NavForGuest=(
             <div>
             </div>

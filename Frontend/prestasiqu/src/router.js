@@ -3,8 +3,6 @@ import {Route, Switch} from 'react-router-dom'
 
 import PrivateRoute from './Security/PrivateRoute'
 
-import {LoadUser} from './Store/Actions/Auth.Actions'
-
 import Login from './Components/Layout/Account/login'
 import Logout from './Components/Layout/Account/logout'
 

@@ -6,7 +6,7 @@ class Home extends React.Component{
         // this.componentDidMount(){
         //     window.location.reload
         // }
-        const {isAuthenticated, user}=this.props.auth
+        const {user}=this.props.auth
         return(
             <div>
             <center> <h1>selamat datang</h1>

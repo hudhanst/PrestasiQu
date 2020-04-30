@@ -8,7 +8,6 @@ import {
     LOGIN_SUCCESS,
     LOGOUT_SUCCESS,
     USER_EXPIRED,
-    ERROR_MASSAGES,
 } from './Type.Actions'
 
 export const tokenConfig = (getState) =>{

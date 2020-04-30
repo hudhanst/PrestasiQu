@@ -24,7 +24,7 @@ class BiodataUpdateModal extends React.Component {
 
     componentDidUpdate(prevProps) {
         if (this.props.biodata.Update_Biodata_ID !== prevProps.biodata.Update_Biodata_ID) {
-            const { Update_Biodata_ID, Update_Biodata } = this.props.biodata
+            const { Update_Biodata_ID } = this.props.biodata
             if (Update_Biodata_ID !== null) {
                 this.props.LoadBiodataUpdate(Update_Biodata_ID)
             }
@@ -108,7 +108,7 @@ class BiodataUpdateModal extends React.Component {
             InstansiPendidikanTerakhir,
             Point,
             Status,
-            Profilepicture,
+            // Profilepicture,
         } = this.state
         // console.log('state', this.state)
 
