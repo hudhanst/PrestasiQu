@@ -2,7 +2,7 @@ import React from 'react'
 
 import {connect} from 'react-redux'
 
-import {LoadBiodata, LoadBiodataAccount, Button_UpdateBiodata} from '../../../Store/Actions/Biodata.Actions'
+import {LoadBiodata, LoadBiodataAccount, Button_UpdateBiodata, Button_UpdateBiodataAccount} from '../../../Store/Actions/Biodata.Actions'
 
 import Print from '../../Container/Print'
 import BiodataSection from '../../Container/Detail/BiodataDetail'
@@ -21,9 +21,11 @@ class Biodata extends React.Component{
     ButtonUpdateBiodata(BiodataID){
         this.props.Button_UpdateBiodata(BiodataID)
     }
+    ButtonUpdateBiodataAccount(AccountID){
+        this.props.Button_UpdateBiodataAccount(AccountID)
+    }
     render(){
         const {Biodata, Account} = this.props.biodata
-        // console.log('id',Biodata)
         return(
             <div className='Biodata'>
                 <Print />
@@ -31,7 +33,7 @@ class Biodata extends React.Component{
                 <button onClick={() =>this.ButtonUpdateBiodata(Biodata.id)} data-toggle="modal" data-target="#BiodataUpdateModal" className='btn btn-sm btn-colorize-green'>Update</button>
                 <BiodataUpdateModal />
                 <AccountSection AccountData={Account} />
-                <button onClick={() =>this.ButtonUpdateBiodata(Biodata.id)} data-toggle="modal" data-target="#AccountUpdateModal" className='btn btn-sm btn-colorize-green'>Update</button>
+                <button onClick={() =>this.ButtonUpdateBiodataAccount(Account.id)} data-toggle="modal" data-target="#AccountUpdateModal" className='btn btn-sm btn-colorize-green'>Update</button>
                 <AccountUpdateModal />
             </div>
         )
@@ -43,4 +45,4 @@ const mapStateToProps=state=>({
     auth:state.Auth
   })
 
-export default connect(mapStateToProps,{LoadBiodata, LoadBiodataAccount, Button_UpdateBiodata})(Biodata)
+export default connect(mapStateToProps,{LoadBiodata, LoadBiodataAccount, Button_UpdateBiodata, Button_UpdateBiodataAccount})(Biodata)
