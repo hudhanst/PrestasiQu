@@ -1,7 +1,11 @@
 from rest_framework import serializers
+
 from ..models import Biodata
 
-class BiodataSerializer(serializers.ModelSerializer):
+# ##GET
+
+
+class Get_List_All_Biodata_Serializer(serializers.ModelSerializer):
     """
     GET ALL BIODATA AVALIABLE
     """
@@ -9,61 +13,82 @@ class BiodataSerializer(serializers.ModelSerializer):
         model = Biodata
         fields = "__all__"
 
-class BiodataDetailSerializer(serializers.ModelSerializer):
+
+class Get_Biodata_Detail_Serializer(serializers.ModelSerializer):
     """
     GET SPESIFIC BIODATA
     """
     class Meta:
         model = Biodata
-        fields = ('id','NomerInduk','Nama','Agama','TempatLahir','TanggalLahir','Alamat','NomerTLP','Email','PendidikanTerakhir','InstansiPendidikanTerakhir','Point','Status','Profilepicture')
+        fields = ('id', 'NomerInduk', 'Nama', 'Agama', 'TempatLahir', 'TanggalLahir', 'Alamat', 'NomerTLP',
+                  'Email', 'PendidikanTerakhir', 'InstansiPendidikanTerakhir', 'Point', 'Status', 'Profilepicture')
+# ##GET-SISWA
 
-class DeleteBiodataSerializer(serializers.ModelSerializer):
+
+class Get_List_Siswa_Biodata_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Biodata
-class UpdateStaffBiodataSerializer(serializers.ModelSerializer):
+        fields = ['id', 'NomerInduk', 'Nama']
+# ##REGISTER
+
+
+class Register_Biodata_asStaf_Serializer(serializers.ModelSerializer):
     """
-    UPDATE STAFF BIODATA
+    CREATE STAFF BIODATA
     """
     class Meta:
-        staff_choices=[
-            ('Guru Aktif','Guru Aktif'),
-            ('Staf Aktif','Staf Aktif')
-            ]
+        staff_choices = [
+            ('Guru Aktif', 'Guru Aktif'),
+            ('Staf Aktif', 'Staf Aktif')
+        ]
         model = Biodata
-        fields = ['id','NomerInduk','Nama','Agama','TempatLahir','TanggalLahir','Alamat','NomerTLP','Email','PendidikanTerakhir','InstansiPendidikanTerakhir','Status','Profilepicture']
-        extra_kwargs = {
-            'Status' : {'choices':staff_choices, 'required':True},
-            'NomerInduk' : {'read_only':True},
-        }
+        # fields = ['NomerInduk','Nama','TempatLahir','TanggalLahir','NomerTLP','Email']
+        fields = ['id', 'NomerInduk', 'Nama', 'Agama', 'TempatLahir', 'TanggalLahir', 'Alamat', 'NomerTLP',
+                  'Email', 'PendidikanTerakhir', 'InstansiPendidikanTerakhir', 'Status', 'Profilepicture']
         # fields = "__all__"
+        extra_kwargs = {
+            'Status': {'choices': staff_choices, 'required': True},
+        }
+class Register_Biodata_asSiswa_Serializer(serializers.ModelSerializer):
+    """
+    CREATE SISWA BIODATA
+    """
+    class Meta:
+        model = Biodata
+        fields = "__all__"
+        read_only_fields = ['id', 'PendidikanTerakhir', 'Point', 'Status']
+# ##UPDATE
+
+
 class Update_Biodata_Full_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Biodata
         fields = "__all__"
-        read_only_fields = ['NomerInduk','Point']
-class CreateStaffBiodataSerializer(serializers.ModelSerializer):
-    """
-    CREATE STAFF BIODATA
-    """
-    # Status = serializers.ChoiceField(choices=staff_choices, required=True)
-    class Meta:
-        staff_choices=[
-            ('Guru Aktif','Guru Aktif'),
-            ('Staf Aktif','Staf Aktif')
-            ]
-        model = Biodata
-        # fields = ['NomerInduk','Nama','TempatLahir','TanggalLahir','NomerTLP','Email']
-        fields = ['id','NomerInduk','Nama','Agama','TempatLahir','TanggalLahir','Alamat','NomerTLP','Email','PendidikanTerakhir','InstansiPendidikanTerakhir','Status','Profilepicture']
-        # fields = "__all__"
-        extra_kwargs = {
-            'Status' : {'choices':staff_choices, 'required':True},
-        }
+        read_only_fields = ['NomerInduk', 'Point']
 
-# class CreateSiswaBiodataSerializer(serializers.ModelSerializer):
-#     """
-#     CREATE SISWA BIODATA
-#     """
-class Get_List_Biodata_Serializer(serializers.ModelSerializer):
+
+class Update_Biodata_Staff_Serializer(serializers.ModelSerializer):
+    """
+    UPDATE STAFF BIODATA
+    """
+    class Meta:
+        staff_choices = [
+            ('Guru Aktif', 'Guru Aktif'),
+            ('Staf Aktif', 'Staf Aktif')
+        ]
+        model = Biodata
+        fields = ['id', 'NomerInduk', 'Nama', 'Agama', 'TempatLahir', 'TanggalLahir', 'Alamat', 'NomerTLP',
+                  'Email', 'PendidikanTerakhir', 'InstansiPendidikanTerakhir', 'Status', 'Profilepicture']
+        extra_kwargs = {
+            'Status': {'choices': staff_choices, 'required': True},
+            'NomerInduk': {'read_only': True},
+        }
+        # fields = "__all__"
+# ##DELETE
+
+
+class Delete_Biodata_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Biodata
-        fields = ['id', 'NomerInduk', 'Nama']
+        # fields = "__all__"
+

@@ -1,22 +1,34 @@
 from django.urls import path, include
 
 from .API.api import (
-    GetBiodataDetailAPI,
-    GetBiodataAPI,
-    CreateStaffBiodataAPI,
-    DeleteBiodataAPI,
-    UpdateBiodataAPI,
-    Get_Lists_Biodata_API,
-    )
+    # ##GET
+    Get_List_All_Biodata_API,
+    Get_Biodata_Detail_API,
+    Get_List_Siswa_Biodata_API,
+    # ##REGISTER
+    Register_Biodata_asStaf_API,
+    Register_Biodata_asSiswa_API,
+    # ##UPDATE
+    Update_Biodata_API,
+    # ##DELETE
+    Delete_Biodata_API,
+)
 # from knox import views as knox_views
 
-urlpatterns=[
+urlpatterns = [
+    # ##KNOX
     # path('api/auth',include('knox.urls')),
-    path('api/auth/biodata',GetBiodataAPI.as_view()),#only for debug
-    path('api/auth/list_biodata_siswa',Get_Lists_Biodata_API.as_view()),#only for debug
-    path('api/auth/biodata/<pk>',GetBiodataDetailAPI.as_view()),
-    path('api/auth/biodata/buatbiodatasatf',CreateStaffBiodataAPI.as_view()),
-    path('api/auth/biodata/<pk>/delete',DeleteBiodataAPI.as_view()),
-    path('api/auth/biodata/<pk>/update',UpdateBiodataAPI.as_view()),
-    # path('api/auth/buatsiswaid',.as_view()),
+    # ##GET
+    # path('api/biodata', Get_List_All_Biodata_API.as_view()),  # only for debug
+    path('api/biodata/user/<pk>', Get_Biodata_Detail_API.as_view()),
+    # path('api/biodata/list_biodata_siswa',Get_List_Siswa_Biodata_API.as_view()),
+    path('api/biodata/list_biodata_siswa',Get_List_Siswa_Biodata_API.as_view()),
+    # ##REGISTER
+    path('api/biodata/register_biodata_staff', Register_Biodata_asStaf_API.as_view()),
+    path('api/biodata/register_biodata_siswa', Register_Biodata_asSiswa_API.as_view()),
+    # ##UPDATE
+    path('api/biodata/user/<pk>/update', Update_Biodata_API.as_view()),
+    # ##DELETE
+    path('api/biodata/user/<pk>/delete', Delete_Biodata_API.as_view()),
 ]
+
