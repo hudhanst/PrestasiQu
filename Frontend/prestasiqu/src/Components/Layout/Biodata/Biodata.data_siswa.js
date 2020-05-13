@@ -1,30 +1,29 @@
 import React from 'react'
 
-import {connect} from 'react-redux'
-
-import {LoadListofSiswa} from '../../../Store/Actions/Biodata.Actions'
-
+import {ButtonAddSiswa} from '../../Container/Button_Add'
 import Print from '../../Container/Print'
-import DataSiswaTableSection from'../../Container/Detail/BiodataDetail.Datasiswa'
-class DataSiswa extends React.Component{
-    componentDidMount(){
-        this.props.LoadListofSiswa()
-    }
-    render(){
-        const {Data_Siswa} =this.props.biodata
-        return(
-            <div>
-                <h1 className='position-center'>-Data Siswa-</h1>
-                <Print />
-                {/* <DataSiswaTableSection  /> */}
-                <DataSiswaTableSection ListBiodata={Data_Siswa}/>
-            </div>
-        )
-    }
-}
-const mapStateToProps=state=>({
-    biodata:state.Biodata,
-    // auth:state.Auth
-})
+import Filter from '../../Container/Filter'
 
-export default connect(mapStateToProps,{LoadListofSiswa})(DataSiswa)
+import BiodataDetailDataSiswa from '../../Container/Detail/BiodataDetail.Datasiswa'
+import DetailViewModal from '../../Container/Modal/Modal.Detail_View'
+import BiodataUpdateModal from '../../Container/Modal/Modal.Biodata_Update'
+import AccountUpdateModal from '../../Container/Modal/Modal.Account_Update'
+import BiodataDeleteModal from '../../Container/Modal/Modal.Biodata_Delete'
+
+const DataSiswa = () =>{
+    return(
+        <div>
+            <h1 className='position-center'>-Data Siswa-</h1>
+            <ButtonAddSiswa />
+            <Print />
+            <Filter tablename={'tabeldatasiswa'} tdnumber={1}/>
+            <BiodataDetailDataSiswa />
+            <DetailViewModal />
+            <BiodataUpdateModal />
+            <AccountUpdateModal />
+            <BiodataDeleteModal />
+        </div>
+    )
+}
+
+export default DataSiswa

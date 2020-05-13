@@ -6,26 +6,44 @@ import {
 } from './Messages.Actions'
 
 import {
-     ////// LOAD DETAIL
-     BIODATA_DETAIL_LOADED,
-     BIODATA_ACCOUNT_DETAIL_LOADED,
-     ////// BIODATA UPDATE
-     _BUTTON_UPDATE_BIODATA_,
-     BIODATA_UPDATE_DATA_LOADED,
-     BIODATA_UPDATED,
-     ////// BIODATA ACCOUNT UPDATE
-     _BUTTON_UPDATE_BIODATA_ACCOUNT_,
-     BIODATA_ACCOUNT_UPDATE_DATA_LOADED,
-     BIODATA_ACCOUNT_UPDATED,
-     ////// BIODATA SISWA
-     SISWA_DATA_LOADED,
+    ////// LOADING
+    BIODATA_LOADING,
+    ////// LOAD DETAIL
+    _BUTTON_DETAIL_VIEW_,
+    BIODATA_DETAIL_LOADED,
+    BIODATA_ACCOUNT_DETAIL_LOADED,
+    ////// BIODATA-UPDATE
+    _BUTTON_UPDATE_BIODATA_,
+    BIODATA_UPDATE_DATA_LOADED,
+    BIODATA_UPDATED,
+    ////// BIODATA-DELETE
+    BIODATA_DELETED,
+    ////// BIODATA ACCOUNT-UPDATE
+    _BUTTON_UPDATE_BIODATA_ACCOUNT_,
+    BIODATA_ACCOUNT_UPDATE_DATA_LOADED,
+    BIODATA_ACCOUNT_UPDATED,
+    ////// BIODATA SISWA
+    SISWA_DATA_LOADED,
+    ////// BIODATA SISWA-CREATE
+    SISWA_BIODATA_CREATED,
+    SISWA_BIODATA_FAILED_CREATE,
+    SISWA_ACCOUNT_CREATED,
+    SISWA_ACCOUNT_FAILED_CREATE,
+    SISWA_FULLY_CREATED,
 } from './Type.Actions'
 
 import {tokenConfig, tokenConfigmultipleform} from './Auth.Actions'
 
 ////// LOAD DETAIL
+export const Button_DetailView = (BiodataID) => (dispatch) => {
+    dispatch({
+        type :_BUTTON_DETAIL_VIEW_,
+        payload : BiodataID
+    })
+}
 export const LoadBiodata = (BiodataID) => (dispatch, getState)=>{
-    axios.get(`http://localhost:8000/api/auth/biodata/${BiodataID}`, tokenConfig(getState))
+    dispatch({type:BIODATA_LOADING})
+    axios.get(`http://localhost:8000/api/biodata/user/${BiodataID}`, tokenConfig(getState))
     .then(res=>{
         dispatch({
             type : BIODATA_DETAIL_LOADED,
@@ -35,8 +53,9 @@ export const LoadBiodata = (BiodataID) => (dispatch, getState)=>{
         console.log(err)
     })
 }
-export const LoadBiodataAccount = (UserID) => (dispatch, getState)=>{
-    axios.get(`http://127.0.0.1:8000/api/auth/user/${UserID}`, tokenConfig(getState))
+export const LoadBiodataAccount = (BiodataID) => (dispatch, getState)=>{
+    dispatch({type:BIODATA_LOADING})
+    axios.get(`http://127.0.0.1:8000/api/auth/user/${BiodataID}`, tokenConfig(getState))
     .then(res=>{
         dispatch({
             type : BIODATA_ACCOUNT_DETAIL_LOADED,
@@ -46,7 +65,7 @@ export const LoadBiodataAccount = (UserID) => (dispatch, getState)=>{
         console.log(err)
     })
 }
-////// BIODATA UPDATE
+////// BIODATA-UPDATE
 export const Button_UpdateBiodata = (BiodataID) => (dispatch) =>{
     dispatch({
         type:_BUTTON_UPDATE_BIODATA_,
@@ -54,7 +73,8 @@ export const Button_UpdateBiodata = (BiodataID) => (dispatch) =>{
     })
 }
 export const LoadBiodataUpdate = (BiodataID) => (dispatch, getState)=>{
-    axios.get(`http://127.0.0.1:8000/api/auth/biodata/${BiodataID}/update`, tokenConfig(getState))
+    dispatch({type:BIODATA_LOADING})
+    axios.get(`http://127.0.0.1:8000/api/biodata/user/${BiodataID}/update`, tokenConfig(getState))
     .then(res=>{
         dispatch({
             type : BIODATA_UPDATE_DATA_LOADED,
@@ -86,7 +106,7 @@ export const UpdateBiodata = (data, authdata) => (dispatch, getState)=>{
     // console.log("authdata",authdata)
     // console.log('bodydata',bodydata)
     // console.log('config',tokenConfigmultipleform(getState))
-    axios.patch(`http://127.0.0.1:8000/api/auth/biodata/${data.id}/update`,bodydata, tokenConfigmultipleform(getState))
+    axios.patch(`http://127.0.0.1:8000/api/biodata/user/${data.id}/update`,bodydata, tokenConfigmultipleform(getState))
     .then(res=>{
         console.log('sukses')
         dispatch({
@@ -101,15 +121,27 @@ export const UpdateBiodata = (data, authdata) => (dispatch, getState)=>{
         console.log('errornya adalah:',err.response.data)
     })
 }
-////// BIODATA ACCOUNT UPDATE
-export const Button_UpdateBiodataAccount = (BiodataAccountID) => (dispatch) =>{
-    dispatch({
-        type:_BUTTON_UPDATE_BIODATA_ACCOUNT_,
-        payload : BiodataAccountID
+////// BIODATA-DELETE
+export const DeleteBiodata = (BiodataID, authdata) => (dispatch, getState)=>{
+    axios.delete(`http://127.0.0.1:8000/api/biodata/user/${BiodataID}/delete`, null, tokenConfig(getState))
+    .then(res=>{
+        dispatch({type:BIODATA_DELETED})
+        console.log(res)
+        window.location.reload(true)
+    }).catch(err=>{
+        console.log(err)
     })
 }
-export const LoadBiodataAccountUpdate = (BiodataAccountID) => (dispatch, getState)=>{
-    axios.get(`http://127.0.0.1:8000/api/auth/user/${BiodataAccountID}/update`, tokenConfig(getState))
+////// BIODATA ACCOUNT-UPDATE
+export const Button_UpdateBiodataAccount = (BiodataID) => (dispatch) =>{
+    dispatch({
+        type:_BUTTON_UPDATE_BIODATA_ACCOUNT_,
+        payload : BiodataID
+    })
+}
+export const LoadBiodataAccountUpdate = (BiodataID) => (dispatch, getState)=>{
+    dispatch({type:BIODATA_LOADING})
+    axios.get(`http://127.0.0.1:8000/api/auth/user/${BiodataID}/update`, tokenConfig(getState))
     .then(res=>{
         dispatch({
             type : BIODATA_ACCOUNT_UPDATE_DATA_LOADED,
@@ -119,7 +151,7 @@ export const LoadBiodataAccountUpdate = (BiodataAccountID) => (dispatch, getStat
         console.log(err)
     })
 }
-export const UpdateBiodataAccount = (data, authdata) =>(dispatch, getState)=>{
+export const UpdateBiodataAccount = (BiodataID, data, authdata) =>(dispatch, getState)=>{
     // console.log('data',data)
     // console.log('authdata',authdata)
     const bodydata = new FormData();
@@ -139,7 +171,7 @@ export const UpdateBiodataAccount = (data, authdata) =>(dispatch, getState)=>{
     bodydata.append('supervisor', data.supervisor);
     bodydata.append('superuser', data.superuser);
 
-    axios.patch(`http://127.0.0.1:8000/api/auth/user/${data.id}/update`, bodydata, tokenConfigmultipleform(getState))
+    axios.patch(`http://127.0.0.1:8000/api/auth/user/${BiodataID}/update`, bodydata, tokenConfigmultipleform(getState))
     .then(res=>{
         console.log('sukses')
         dispatch({
@@ -155,8 +187,9 @@ export const UpdateBiodataAccount = (data, authdata) =>(dispatch, getState)=>{
     })
 }
 ////// BIODATA SISWA
-export const LoadListofSiswa = (BiodataID) => (dispatch, getState)=>{
-    axios.get('http://localhost:8000/api/auth/list_biodata_siswa', tokenConfig(getState))
+export const LoadListofSiswa = () => (dispatch, getState)=>{
+    dispatch({type:BIODATA_LOADING})
+    axios.get('http://localhost:8000/api/biodata/list_biodata_siswa', tokenConfig(getState))
     .then(res=>{
         dispatch({
             type : SISWA_DATA_LOADED,
@@ -166,6 +199,47 @@ export const LoadListofSiswa = (BiodataID) => (dispatch, getState)=>{
         console.log(err)
     })
 }
+////// BIODATA SISWA-CREATE
+export const CreateBiodataasSiswa = (Data, authdata) =>(dispatch, getState)=>{
+    const bodydata = new FormData()
+    
+    bodydata.append('NomerInduk', Data.NomerInduk)
+    bodydata.append('Nama', Data.Nama)
+    bodydata.append('Agama', Data.Agama)
+    bodydata.append('TempatLahir', Data.TempatLahir)
+    bodydata.append('TanggalLahir', Data.TanggalLahir)
+    bodydata.append('Alamat', Data.Alamat)
+    bodydata.append('NomerTLP', Data.NomerTLP)
+    bodydata.append('Email', Data.Email)
+    bodydata.append('InstansiPendidikanTerakhir', Data.InstansiPendidikanTerakhir)
+    if(Data.Profilepicture !== null){
+        bodydata.append('Profilepicture', Data.Profilepicture);
+    }
 
+    axios.post('http://127.0.0.1:8000/api/biodata/register_biodata_siswa', bodydata, tokenConfigmultipleform(getState))
+    .then(biores=>{
+        console.log('SISWA_BIODATA_CREATED',biores)
+        dispatch({type:SISWA_BIODATA_CREATED})
+        const tgllahir = biores.data.TanggalLahir
+        var password = tgllahir.replace(new RegExp("-", "g"), '')
+        const nomerinduk =  biores.data.NomerInduk
+        const profile = biores.data.id
+        const AccountData = JSON.stringify({nomerinduk, password, profile})
+        console.log('AccountData',AccountData)
+        axios.post('http://127.0.0.1:8000/api/auth/register_user_siswa',AccountData,tokenConfig(getState))
+        .then(accres=>{
+            console.log('SISWA_ACCOUNT_CREATED',accres)
+            dispatch({type:SISWA_ACCOUNT_CREATED})
+            console.log('SISWA_FULLY_CREATED')
+            dispatch({type:SISWA_FULLY_CREATED})
+        }).catch(accerr=>{
+            console.log('SISWA_ACCOUNT_FAILED_CREATE',accerr)
+            dispatch({type:SISWA_ACCOUNT_FAILED_CREATE})
+        })
+    }).catch(bioerr=>{
+        console.log('SISWA_BIODATA_FAILED_CREATE',bioerr)
+        dispatch({type:SISWA_BIODATA_FAILED_CREATE})
+    })
+}
 
 
