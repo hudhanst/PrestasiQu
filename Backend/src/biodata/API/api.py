@@ -12,8 +12,9 @@ from .serializers import (
     Get_List_Staff_Biodata_Serializer,
     Get_List_Admin_Biodata_Serializer,
     # ##REGISTER
-    Register_Biodata_asStaf_Serializer,
     Register_Biodata_asSiswa_Serializer,
+    Register_Biodata_asStaff_Serializer,
+    Register_Biodata_asAdmin_Serializer,
     # ##UPDATE
     Update_Biodata_Full_Serializer,
     Update_Biodata_Staff_Serializer,
@@ -92,15 +93,6 @@ class Get_List_Admin_Biodata_API(generics.ListAPIView):
 # ##REGISTER
 
 
-class Register_Biodata_asStaf_API(generics.CreateAPIView):
-    permission_classes = [
-        permissions.AllowAny,
-        # permissions.IsAuthenticated,
-        # IsAdmin
-    ]
-    serializer_class = Register_Biodata_asStaf_Serializer
-
-
 class Register_Biodata_asSiswa_API(generics.CreateAPIView):
     permission_classes = [
         permissions.AllowAny,
@@ -112,19 +104,55 @@ class Register_Biodata_asSiswa_API(generics.CreateAPIView):
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
-            serializer.validated_data['NomerInduk'] = serializer.validated_data['NomerInduk']
-            serializer.validated_data['Nama'] = serializer.validated_data['Nama']
-            serializer.validated_data['Agama'] = serializer.validated_data['Agama']
-            serializer.validated_data['TempatLahir'] = serializer.validated_data['TempatLahir']
-            serializer.validated_data['TanggalLahir'] = serializer.validated_data['TanggalLahir']
-            serializer.validated_data['Alamat'] = serializer.validated_data['Alamat']
-            serializer.validated_data['NomerTLP'] = serializer.validated_data['NomerTLP']
-            serializer.validated_data['Email'] = serializer.validated_data['Email']
+            # serializer.validated_data['NomerInduk'] = serializer.validated_data['NomerInduk']
+            # serializer.validated_data['Nama'] = serializer.validated_data['Nama']
+            # serializer.validated_data['Agama'] = serializer.validated_data['Agama']
+            # serializer.validated_data['TempatLahir'] = serializer.validated_data['TempatLahir']
+            # serializer.validated_data['TanggalLahir'] = serializer.validated_data['TanggalLahir']
+            # serializer.validated_data['Alamat'] = serializer.validated_data['Alamat']
+            # serializer.validated_data['NomerTLP'] = serializer.validated_data['NomerTLP']
+            # serializer.validated_data['Email'] = serializer.validated_data['Email']
             serializer.validated_data['PendidikanTerakhir'] = 'SMP'
-            serializer.validated_data['InstansiPendidikanTerakhir'] = serializer.validated_data['InstansiPendidikanTerakhir']
+            # serializer.validated_data['InstansiPendidikanTerakhir'] = serializer.validated_data['InstansiPendidikanTerakhir']
             serializer.validated_data['Point'] = 300
             serializer.validated_data['Status'] = 'Siswa Aktif'
             # serializer.validated_data['Profilepicture'] = serializer.validated_data['Profilepicture']
+            serializer.save()
+            user = serializer.validated_data
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors)
+
+
+class Register_Biodata_asStaf_API(generics.CreateAPIView):
+    permission_classes = [
+        permissions.AllowAny,
+    ]
+    serializer_class = Register_Biodata_asStaff_Serializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            serializer.validated_data['Point'] = 300
+            serializer.validated_data['Status'] = 'Guru Aktif'
+            serializer.save()
+            user = serializer.validated_data
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors)
+
+
+class Register_Biodata_asAdmin_API(generics.CreateAPIView):
+    permission_classes = [
+        permissions.AllowAny,
+    ]
+    serializer_class = Register_Biodata_asAdmin_Serializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            serializer.validated_data['Point'] = 300
+            serializer.validated_data['Status'] = 'Staf Aktif'
             serializer.save()
             user = serializer.validated_data
             return Response(serializer.data)

@@ -8,8 +8,9 @@ from .API.api import (
     Get_List_Staff_Biodata_API,
     Get_List_Admin_Biodata_API,
     # ##REGISTER
-    Register_Biodata_asStaf_API,
     Register_Biodata_asSiswa_API,
+    Register_Biodata_asStaf_API,
+    Register_Biodata_asAdmin_API,
     # ##UPDATE
     Update_Biodata_API,
     # ##DELETE
@@ -28,8 +29,9 @@ urlpatterns = [
     path('api/biodata/list_biodata_staff',Get_List_Staff_Biodata_API.as_view()),
     path('api/biodata/list_biodata_admin',Get_List_Admin_Biodata_API.as_view()),
     # ##REGISTER
-    path('api/biodata/register_biodata_staff', Register_Biodata_asStaf_API.as_view()),
     path('api/biodata/register_biodata_siswa', Register_Biodata_asSiswa_API.as_view()),
+    path('api/biodata/register_biodata_staff', Register_Biodata_asStaf_API.as_view()),
+    path('api/biodata/register_biodata_admin', Register_Biodata_asAdmin_API.as_view()),
     # ##UPDATE
     path('api/biodata/user/<pk>/update', Update_Biodata_API.as_view()),
     # ##DELETE

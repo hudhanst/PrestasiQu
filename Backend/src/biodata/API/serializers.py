@@ -29,10 +29,14 @@ class Get_List_Siswa_Biodata_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Biodata
         fields = ['id', 'NomerInduk', 'Nama']
+
+
 class Get_List_Staff_Biodata_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Biodata
         fields = ['id', 'NomerInduk', 'Nama']
+
+
 class Get_List_Admin_Biodata_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Biodata
@@ -40,23 +44,6 @@ class Get_List_Admin_Biodata_Serializer(serializers.ModelSerializer):
 # ##REGISTER
 
 
-class Register_Biodata_asStaf_Serializer(serializers.ModelSerializer):
-    """
-    CREATE STAFF BIODATA
-    """
-    class Meta:
-        staff_choices = [
-            ('Guru Aktif', 'Guru Aktif'),
-            ('Staf Aktif', 'Staf Aktif')
-        ]
-        model = Biodata
-        # fields = ['NomerInduk','Nama','TempatLahir','TanggalLahir','NomerTLP','Email']
-        fields = ['id', 'NomerInduk', 'Nama', 'Agama', 'TempatLahir', 'TanggalLahir', 'Alamat', 'NomerTLP',
-                  'Email', 'PendidikanTerakhir', 'InstansiPendidikanTerakhir', 'Status', 'Profilepicture']
-        # fields = "__all__"
-        extra_kwargs = {
-            'Status': {'choices': staff_choices, 'required': True},
-        }
 class Register_Biodata_asSiswa_Serializer(serializers.ModelSerializer):
     """
     CREATE SISWA BIODATA
@@ -65,6 +52,25 @@ class Register_Biodata_asSiswa_Serializer(serializers.ModelSerializer):
         model = Biodata
         fields = "__all__"
         read_only_fields = ['id', 'PendidikanTerakhir', 'Point', 'Status']
+
+
+class Register_Biodata_asStaff_Serializer(serializers.ModelSerializer):
+    """
+    CREATE STAFF BIODATA
+    """
+    class Meta:
+        model = Biodata
+        # fields = ['id', 'NomerInduk', 'Nama', 'Agama', 'TempatLahir', 'TanggalLahir', 'Alamat', 'NomerTLP',
+        #           'Email', 'PendidikanTerakhir', 'InstansiPendidikanTerakhir', 'Status', 'Profilepicture']
+        fields = "__all__"
+        read_only_fields = ['id', 'Point', 'Status']
+
+
+class Register_Biodata_asAdmin_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Biodata
+        fields = "__all__"
+        read_only_fields = ['id', 'Point', 'Status']
 # ##UPDATE
 
 
@@ -99,4 +105,3 @@ class Delete_Biodata_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Biodata
         # fields = "__all__"
-
