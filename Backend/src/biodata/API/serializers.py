@@ -29,6 +29,14 @@ class Get_List_Siswa_Biodata_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Biodata
         fields = ['id', 'NomerInduk', 'Nama']
+class Get_List_Staff_Biodata_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Biodata
+        fields = ['id', 'NomerInduk', 'Nama']
+class Get_List_Admin_Biodata_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Biodata
+        fields = ['id', 'NomerInduk', 'Nama']
 # ##REGISTER
 
 

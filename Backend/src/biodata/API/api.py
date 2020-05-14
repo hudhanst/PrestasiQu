@@ -1,13 +1,16 @@
 from rest_framework import generics, permissions
 from rest_framework.response import Response
 
+from django.db.models import Q
 from ..models import Biodata
-
+from account.models import User
 from .serializers import (
     # ##GET
     Get_List_All_Biodata_Serializer,
     Get_Biodata_Detail_Serializer,
     Get_List_Siswa_Biodata_Serializer,
+    Get_List_Staff_Biodata_Serializer,
+    Get_List_Admin_Biodata_Serializer,
     # ##REGISTER
     Register_Biodata_asStaf_Serializer,
     Register_Biodata_asSiswa_Serializer,
@@ -48,10 +51,44 @@ class Get_List_Siswa_Biodata_API(generics.ListAPIView):
     permission_classes = [
         permissions.AllowAny,
     ]
-    serializer_class = Get_List_All_Biodata_Serializer
-    # serializer_class = Get_List_Siswa_Biodata_Serializer
+    serializer_class = Get_List_Siswa_Biodata_Serializer
 
-    queryset = Biodata.objects.filter(Status='Siswa Aktif')
+    # queryset = Biodata.objects.filter(Status='Siswa Aktif')
+    def get_queryset(self):
+        # Profileid = User.objects.filter(siswa=True, staff=False, admin=False, supervisor=False, superuser=False)
+        Profileid = User.objects.filter(siswa=True, staff=False)
+        queryset = Biodata.objects.filter(
+            id__in=[prf.profile_id for prf in Profileid])
+        return queryset
+
+
+class Get_List_Staff_Biodata_API(generics.ListAPIView):
+    permission_classes = [
+        permissions.AllowAny,
+    ]
+    serializer_class = Get_List_Staff_Biodata_Serializer
+
+    # queryset = Biodata.objects.filter(Status='Guru Aktif')
+    def get_queryset(self):
+        Profileid = User.objects.filter(
+            siswa=False, staff=True, admin=False, superuser=False)
+        queryset = Biodata.objects.filter(
+            id__in=[prf.profile_id for prf in Profileid])
+        return queryset
+
+
+class Get_List_Admin_Biodata_API(generics.ListAPIView):
+    permission_classes = [
+        permissions.AllowAny,
+    ]
+    serializer_class = Get_List_Admin_Biodata_Serializer
+
+    # queryset = Biodata.objects.filter(Status='Staf Aktif')
+    def get_queryset(self):
+        Profileid = User.objects.filter(Q(admin=True) or Q(superuser=True))
+        queryset = Biodata.objects.filter(
+            id__in=[prf.profile_id for prf in Profileid])
+        return queryset
 # ##REGISTER
 
 
@@ -62,6 +99,8 @@ class Register_Biodata_asStaf_API(generics.CreateAPIView):
         # IsAdmin
     ]
     serializer_class = Register_Biodata_asStaf_Serializer
+
+
 class Register_Biodata_asSiswa_API(generics.CreateAPIView):
     permission_classes = [
         permissions.AllowAny,
@@ -69,7 +108,7 @@ class Register_Biodata_asSiswa_API(generics.CreateAPIView):
         # IsAdmin
     ]
     serializer_class = Register_Biodata_asSiswa_Serializer
-    
+
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
@@ -118,7 +157,7 @@ class Update_Biodata_API(generics.RetrieveUpdateAPIView):
 
 
 class Delete_Biodata_API(generics.DestroyAPIView):
-# class Delete_Biodata_API(generics.RetrieveDestroyAPIView):
+    # class Delete_Biodata_API(generics.RetrieveDestroyAPIView):
     permission_classes = [
         permissions.AllowAny,
         # permissions.IsAuthenticated,
@@ -126,4 +165,3 @@ class Delete_Biodata_API(generics.DestroyAPIView):
     ]
     serializer_class = Delete_Biodata_Serializer
     queryset = Biodata.objects.all()
-
