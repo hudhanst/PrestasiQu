@@ -19,6 +19,7 @@ from .serializers import (
     # ##REGISTER
     Create_Account_asSiswa_Serializer,
     Create_Account_asStaff_Serializer,
+    Create_Account_asAdmin_Serializer,
     # ##UPDATE
     Update_Account_Detail_Serializer,
     Update_Account_Password_Serializer,
@@ -106,6 +107,26 @@ class Registrasi_User_asStaff_API(generics.CreateAPIView):
             serializer.validated_data['password'] = make_password(
                 serializer.validated_data['password'])
             serializer.validated_data['staff'] = True
+            serializer.save()
+            user = serializer.validated_data
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors)
+
+
+class Registrasi_User_asAdmin_API(generics.CreateAPIView):
+    permission_classes = [
+        permissions.AllowAny,
+    ]
+    serializer_class = Create_Account_asAdmin_Serializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            serializer.validated_data['password'] = make_password(
+                serializer.validated_data['password'])
+            serializer.validated_data['staff'] = True
+            serializer.validated_data['admin'] = True
             serializer.save()
             user = serializer.validated_data
             return Response(serializer.data)

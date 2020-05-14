@@ -52,6 +52,14 @@ class Create_Account_asStaff_Serializer(serializers.ModelSerializer):
         fields = '__all__'
         read_only_fields = ['id', 'last_login', 'active',
                             'siswa', 'staff', 'admin', 'supervisor', 'superuser']
+
+
+class Create_Account_asAdmin_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'
+        read_only_fields = ['id', 'last_login', 'active',
+                            'siswa', 'staff', 'admin', 'supervisor', 'superuser']
 # ##UPDATE
 
 

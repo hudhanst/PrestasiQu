@@ -11,6 +11,7 @@ from .API.api import (
     # ##REGISTER
     Registrasi_User_asSiswa_API,
     Registrasi_User_asStaff_API,
+    Registrasi_User_asAdmin_API,
     # ##UPDATE
     Update_Account_Detail_API,
 )
@@ -26,6 +27,7 @@ urlpatterns = [
     # ##REGISTER
     path('api/auth/register_user_siswa', Registrasi_User_asSiswa_API.as_view()),
     path('api/auth/register_user_staff', Registrasi_User_asStaff_API.as_view()),
+    path('api/auth/register_user_admin', Registrasi_User_asAdmin_API.as_view()),
     # ##UPDATE
     path('api/auth/user/<profile>/update', Update_Account_Detail_API.as_view()),
     # ##LOGOUT
