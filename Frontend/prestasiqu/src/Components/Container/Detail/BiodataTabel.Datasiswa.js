@@ -3,10 +3,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import { LoadListofSiswa, Button_DetailView, Button_UpdateBiodata, Button_UpdateBiodataAccount } from '../../../Store/Actions/Biodata.Actions'
-import {Short_Column_INT, Short_Column_STR} from '../../Container/Shorting'
+import {Short_Column_INT, Short_Column_STR} from '../Shorting'
 import DataNotFound from '../DataNotFound'
 
-class BiodataDetailDataSiswa extends React.Component {
+class BiodataTableDataSiswa extends React.Component {
     componentDidMount() {
         this.props.LoadListofSiswa()
     }
@@ -85,4 +85,4 @@ const mapStateToProps = state => ({
     auth: state.Auth
 })
 
-export default connect(mapStateToProps, { LoadListofSiswa, Button_DetailView, Button_UpdateBiodata, Button_UpdateBiodataAccount })(BiodataDetailDataSiswa)
+export default connect(mapStateToProps, { LoadListofSiswa, Button_DetailView, Button_UpdateBiodata, Button_UpdateBiodataAccount })(BiodataTableDataSiswa)

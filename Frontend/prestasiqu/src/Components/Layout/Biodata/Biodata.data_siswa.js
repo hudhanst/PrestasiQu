@@ -4,7 +4,7 @@ import {ButtonAddSiswa} from '../../Container/Button_Add'
 import Print from '../../Container/Print'
 import Filter from '../../Container/Filter'
 
-import BiodataDetailDataSiswa from '../../Container/Detail/BiodataDetail.Datasiswa'
+import BiodataTabelDatasiswa from '../../Container/Detail/BiodataTabel.Datasiswa'
 import DetailViewModal from '../../Container/Modal/Modal.Detail_View'
 import BiodataUpdateModal from '../../Container/Modal/Modal.Biodata_Update'
 import AccountUpdateModal from '../../Container/Modal/Modal.Account_Update'
@@ -17,7 +17,7 @@ const DataSiswa = () =>{
             <ButtonAddSiswa />
             <Print />
             <Filter tablename={'tabeldatasiswa'} tdnumber={1}/>
-            <BiodataDetailDataSiswa />
+            <BiodataTabelDatasiswa />
             <DetailViewModal />
             <BiodataUpdateModal />
             <AccountUpdateModal />
