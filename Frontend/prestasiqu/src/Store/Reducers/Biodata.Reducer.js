@@ -23,6 +23,22 @@ import {
     SISWA_ACCOUNT_CREATED,
     SISWA_ACCOUNT_FAILED_CREATE,
     SISWA_FULLY_CREATED,
+    ////// BIODATA STAFF
+    STAFF_DATA_LOADED,
+    ////// BIODATA STAFF-CREATE
+    STAFF_BIODATA_CREATED,
+    STAFF_BIODATA_FAILED_CREATE,
+    STAFF_ACCOUNT_CREATED,
+    STAFF_ACCOUNT_FAILED_CREATE,
+    STAFF_FULLY_CREATED,
+    ////// BIODATA ADMIN
+    ADMIN_DATA_LOADED,
+    ////// BIODATA ADMIN-CREATE
+    ADMIN_BIODATA_CREATED,
+    ADMIN_BIODATA_FAILED_CREATE,
+    ADMIN_ACCOUNT_CREATED,
+    ADMIN_ACCOUNT_FAILED_CREATE,
+    ADMIN_FULLY_CREATED,
 } from '../Actions/Type.Actions'
 
 const initialState ={
@@ -39,7 +55,11 @@ const initialState ={
     Update_Biodata_Account_ID :null,
     Update_Biodata_Account : null,
     ////// BIODATA SISWA
-    Data_Siswa : []
+    Data_Siswa : [],
+    ////// BIODATA STAFF
+    Data_Staff : [],
+    ////// BIODATA ADMIN
+    Data_Admin : [],
 }
 
 export default function(state = initialState, action){
@@ -130,6 +150,60 @@ export default function(state = initialState, action){
                 ...state,
             }
         case SISWA_FULLY_CREATED:
+            return{
+                ...state,
+            }
+        ////// BIODATA STAFF
+        case STAFF_DATA_LOADED:
+            return{
+                ...state,
+                Data_Staff :action.payload
+            }
+        ////// BIODATA STAFF-CREATE
+        case STAFF_BIODATA_CREATED:
+            return{
+                ...state,
+            }
+        case STAFF_BIODATA_FAILED_CREATE:
+            return{
+                ...state,
+            }
+        case STAFF_ACCOUNT_CREATED:
+            return{
+                ...state,
+            }
+        case STAFF_ACCOUNT_FAILED_CREATE:
+            return{
+                ...state,
+            }
+        case STAFF_FULLY_CREATED:
+            return{
+                ...state,
+            }
+        ////// BIODATA ADMIN
+        case ADMIN_DATA_LOADED:
+            return{
+                ...state,
+                Data_Admin :action.payload
+            }
+        ////// BIODATA ADMIN-CREATE
+        case ADMIN_BIODATA_CREATED:
+            return{
+                ...state,
+            }
+        case ADMIN_BIODATA_FAILED_CREATE:
+            return{
+                ...state,
+            }
+        case ADMIN_ACCOUNT_CREATED:
+            return{
+                ...state,
+            }
+        case ADMIN_ACCOUNT_FAILED_CREATE:
+            return{
+                ...state,
+            }
+        case ADMIN_FULLY_CREATED:
             return{
                 ...state,
             }

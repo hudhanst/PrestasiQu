@@ -30,6 +30,22 @@ import {
     SISWA_ACCOUNT_CREATED,
     SISWA_ACCOUNT_FAILED_CREATE,
     SISWA_FULLY_CREATED,
+    ////// BIODATA STAFF
+    STAFF_DATA_LOADED,
+    ////// BIODATA STAFF-CREATE
+    STAFF_BIODATA_CREATED,
+    STAFF_BIODATA_FAILED_CREATE,
+    STAFF_ACCOUNT_CREATED,
+    STAFF_ACCOUNT_FAILED_CREATE,
+    STAFF_FULLY_CREATED,
+    ////// BIODATA ADMIN
+    ADMIN_DATA_LOADED,
+    ////// BIODATA ADMIN-CREATE
+    ADMIN_BIODATA_CREATED,
+    ADMIN_BIODATA_FAILED_CREATE,
+    ADMIN_ACCOUNT_CREATED,
+    ADMIN_ACCOUNT_FAILED_CREATE,
+    ADMIN_FULLY_CREATED,
 } from './Type.Actions'
 
 import {tokenConfig, tokenConfigmultipleform} from './Auth.Actions'
@@ -241,5 +257,117 @@ export const CreateBiodataasSiswa = (Data, authdata) =>(dispatch, getState)=>{
         dispatch({type:SISWA_BIODATA_FAILED_CREATE})
     })
 }
+////// BIODATA STAFF
+export const LoadListofStaff = () => (dispatch, getState)=>{
+    dispatch({type:BIODATA_LOADING})
+    axios.get('http://127.0.0.1:8000/api/biodata/list_biodata_staff', tokenConfig(getState))
+    .then(res=>{
+        console.log(res)
+        dispatch({
+            type : STAFF_DATA_LOADED,
+            payload : res.data
+        })
+    }).catch(err=>{
+        console.log(err)
+    })
+}
+////// BIODATA STAFF-CREATE
+export const CreateBiodataasStaff = (Data, authdata) =>(dispatch, getState)=>{
+    const bodydata = new FormData()
+    
+    bodydata.append('NomerInduk', Data.NomerInduk)
+    bodydata.append('Nama', Data.Nama)
+    bodydata.append('Agama', Data.Agama)
+    bodydata.append('TempatLahir', Data.TempatLahir)
+    bodydata.append('TanggalLahir', Data.TanggalLahir)
+    bodydata.append('Alamat', Data.Alamat)
+    bodydata.append('NomerTLP', Data.NomerTLP)
+    bodydata.append('Email', Data.Email)
+    bodydata.append('PendidikanTerakhir', Data.PendidikanTerakhir)
+    bodydata.append('InstansiPendidikanTerakhir', Data.InstansiPendidikanTerakhir)
+    if(Data.Profilepicture !== null){
+        bodydata.append('Profilepicture', Data.Profilepicture);
+    }
 
+    axios.post('http://127.0.0.1:8000/api/biodata/register_biodata_staff', bodydata, tokenConfigmultipleform(getState))
+    .then(biores=>{
+        console.log('STAFF_BIODATA_CREATED',biores)
+        dispatch({type:STAFF_BIODATA_CREATED})
+        const tgllahir = biores.data.TanggalLahir
+        var password = tgllahir.replace(new RegExp("-", "g"), '')
+        const nomerinduk =  biores.data.NomerInduk
+        const profile = biores.data.id
+        const AccountData = JSON.stringify({nomerinduk, password, profile})
+        console.log('AccountData',AccountData)
+        axios.post('http://127.0.0.1:8000/api/auth/register_user_staff',AccountData,tokenConfig(getState))
+        .then(accres=>{
+            console.log('STAFF_ACCOUNT_CREATED',accres)
+            dispatch({type:STAFF_ACCOUNT_CREATED})
+            console.log('STAFF_FULLY_CREATED')
+            dispatch({type:STAFF_FULLY_CREATED})
+        }).catch(accerr=>{
+            console.log('STAFF_ACCOUNT_FAILED_CREATE',accerr)
+            dispatch({type:STAFF_ACCOUNT_FAILED_CREATE})
+        })
+    }).catch(bioerr=>{
+        console.log('STAFF_BIODATA_FAILED_CREATE',bioerr)
+        dispatch({type:STAFF_BIODATA_FAILED_CREATE})
+    })
+}
+////// BIODATA ADMIN
+export const LoadListofAdmin = () => (dispatch, getState)=>{
+    dispatch({type:BIODATA_LOADING})
+    axios.get('http://127.0.0.1:8000/api/biodata/list_biodata_admin', tokenConfig(getState))
+    .then(res=>{
+        console.log(res)
+        dispatch({
+            type : ADMIN_DATA_LOADED,
+            payload : res.data
+        })
+    }).catch(err=>{
+        console.log(err)
+    })
+}
+////// BIODATA ADMIN-CREATE
+export const CreateBiodataasAdmin = (Data, authdata) =>(dispatch, getState)=>{
+    const bodydata = new FormData()
+    
+    bodydata.append('NomerInduk', Data.NomerInduk)
+    bodydata.append('Nama', Data.Nama)
+    bodydata.append('Agama', Data.Agama)
+    bodydata.append('TempatLahir', Data.TempatLahir)
+    bodydata.append('TanggalLahir', Data.TanggalLahir)
+    bodydata.append('Alamat', Data.Alamat)
+    bodydata.append('NomerTLP', Data.NomerTLP)
+    bodydata.append('Email', Data.Email)
+    bodydata.append('PendidikanTerakhir', Data.PendidikanTerakhir)
+    bodydata.append('InstansiPendidikanTerakhir', Data.InstansiPendidikanTerakhir)
+    if(Data.Profilepicture !== null){
+        bodydata.append('Profilepicture', Data.Profilepicture);
+    }
 
+    axios.post('http://127.0.0.1:8000/api/biodata/register_biodata_admin', bodydata, tokenConfigmultipleform(getState))
+    .then(biores=>{
+        console.log('ADMIN_BIODATA_CREATED',biores)
+        dispatch({type:ADMIN_BIODATA_CREATED})
+        const tgllahir = biores.data.TanggalLahir
+        var password = tgllahir.replace(new RegExp("-", "g"), '')
+        const nomerinduk =  biores.data.NomerInduk
+        const profile = biores.data.id
+        const AccountData = JSON.stringify({nomerinduk, password, profile})
+        console.log('AccountData',AccountData)
+        axios.post('http://127.0.0.1:8000/api/auth/register_user_admin',AccountData,tokenConfig(getState))
+        .then(accres=>{
+            console.log('ADMIN_ACCOUNT_CREATED',accres)
+            dispatch({type:ADMIN_ACCOUNT_CREATED})
+            console.log('ADMIN_FULLY_CREATED')
+            dispatch({type:ADMIN_FULLY_CREATED})
+        }).catch(accerr=>{
+            console.log('ADMIN_ACCOUNT_FAILED_CREATE',accerr)
+            dispatch({type:ADMIN_ACCOUNT_FAILED_CREATE})
+        })
+    }).catch(bioerr=>{
+        console.log('ADMIN_BIODATA_FAILED_CREATE',bioerr)
+        dispatch({type:ADMIN_BIODATA_FAILED_CREATE})
+    })
+}

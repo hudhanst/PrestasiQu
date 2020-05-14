@@ -2,9 +2,9 @@ import React from 'react'
 
 import { connect } from 'react-redux'
 
-import { CreateBiodataasSiswa } from '../../../Store/Actions/Biodata.Actions'
+import { CreateBiodataasAdmin } from '../../../Store/Actions/Biodata.Actions'
 
-class BiodataSiswaAdd extends React.Component {
+class BiodataAdminAdd extends React.Component {
     state = {
         NomerInduk: '',
         Nama: '',
@@ -14,6 +14,7 @@ class BiodataSiswaAdd extends React.Component {
         Alamat: '',
         NomerTLP: '',
         Email: '',
+        PendidikanTerakhir: '',
         InstansiPendidikanTerakhir: '',
         Profilepicture: null,
     }
@@ -28,6 +29,7 @@ class BiodataSiswaAdd extends React.Component {
             Alamat: this.state.Alamat,
             NomerTLP: this.state.NomerTLP,
             Email: this.state.Email,
+            PendidikanTerakhir: this.state.PendidikanTerakhir,
             InstansiPendidikanTerakhir: this.state.InstansiPendidikanTerakhir,
             Profilepicture: this.state.Profilepicture,
         }
@@ -39,17 +41,13 @@ class BiodataSiswaAdd extends React.Component {
             supervisor: user.supervisor,
             superuser: user.superuser,
         }
-        this.props.CreateBiodataasSiswa(data, authdata)
+        this.props.CreateBiodataasAdmin(data, authdata)
     }
     Form_OnChange = E => {
         this.setState({ [E.target.name]: E.target.value })
-        // console.log('name', E.target.name)
-        // console.log('value', E.target.value)
     }
     File_OnChange = E => {
         this.setState({ [E.target.name]: E.target.files[0] })
-        // console.log('filename', E.target.name)
-        // console.log('filevalue', E.target.value)
     }
     render() {
         const {
@@ -61,12 +59,13 @@ class BiodataSiswaAdd extends React.Component {
             Alamat,
             NomerTLP,
             Email,
+            PendidikanTerakhir,
             InstansiPendidikanTerakhir,
             // Profilepicture,
         } = this.state
         return (
             <div>
-                <h2 className='position-center'>-Create Siswa Biodata-</h2><br />
+                <h2 className='position-center'>-Create Admin Biodata-</h2><br />
                 <form onSubmit={this.Form_OnSubmit}>
                     <label>NomerInduk:</label><br />
                     <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='NomerInduk' value={NomerInduk} required /><br />
@@ -74,15 +73,15 @@ class BiodataSiswaAdd extends React.Component {
                     <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Nama' value={Nama} /><br required />
                     <label>Agama:</label><br />
                     <select className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Agama' value={Agama}>
-                                <option value="" disabled> -- select an option -- </option>
-                                <option value="Buddha">Buddha</option>
-                                <option value="Hindu">Hindu</option>
-                                <option value="Islam">Islam</option>
-                                <option value="Katolik">Katolik</option>
-                                <option value="KongHuCu">KongHuCu</option>
-                                <option value="Kristen">Kristen</option>
-                                <option value="Lainnya">Lainnya</option>
-                            </select>
+                        <option value="" disabled> -- select an option -- </option>
+                        <option value="Buddha">Buddha</option>
+                        <option value="Hindu">Hindu</option>
+                        <option value="Islam">Islam</option>
+                        <option value="Katolik">Katolik</option>
+                        <option value="KongHuCu">KongHuCu</option>
+                        <option value="Kristen">Kristen</option>
+                        <option value="Lainnya">Lainnya</option>
+                    </select>
                     <label>TempatLahir:</label><br />
                     <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='TempatLahir' value={TempatLahir} required /><br />
                     <label>TanggalLahir:</label><br />
@@ -93,6 +92,16 @@ class BiodataSiswaAdd extends React.Component {
                     <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='NomerTLP' value={NomerTLP} /><br />
                     <label>Email:</label><br />
                     <input type='email' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Email' value={Email} /><br />
+                    <label>PendidikanTerakhir:</label><br />
+                    <select className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='PendidikanTerakhir' value={PendidikanTerakhir}>
+                        <option value="" disabled> -- select an option -- </option>
+                        <option value="SD">SD</option>
+                        <option value="SMP">SMP</option>
+                        <option value="SMA">SMA</option>
+                        <option value="S1">S1</option>
+                        <option value="S2">S2</option>
+                        <option value="S3">S3</option>
+                    </select>
                     <label>InstansiPendidikanTerakhir:</label><br />
                     <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='InstansiPendidikanTerakhir' value={InstansiPendidikanTerakhir} /><br />
                     <label>Profilepicture:</label><br />
@@ -111,4 +120,4 @@ const mapStateToProps = state => ({
     auth: state.Auth
 })
 
-export default connect(mapStateToProps, { CreateBiodataasSiswa })(BiodataSiswaAdd)
+export default connect(mapStateToProps, { CreateBiodataasAdmin })(BiodataAdminAdd)
