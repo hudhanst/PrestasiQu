@@ -3,9 +3,11 @@ import {combineReducers} from 'redux'
 import Auth from './Auth.Reducer'
 import Messages from './Messages.Reducer'
 import Biodata from './Biodata.Reducer'
-import Pelanggaran from './Pelanggaran.Reducer'
+import Point from './Point.Reducer'
+import Prestasi from './Prestasi.Reducer'
+
 const RootReducer = combineReducers({
-    Auth, Messages, Biodata, Pelanggaran
+    Auth, Messages, Biodata, Point, Prestasi
 })
 
 export default RootReducer

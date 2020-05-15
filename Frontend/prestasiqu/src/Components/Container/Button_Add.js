@@ -7,9 +7,12 @@ import BiodataAddSiswaModal from './Modal/Modal.Biodata_AddSiswa'
 import BiodataAddGuruModal from './Modal/Modal.Biodata_AddGuru'
 ////// BIODATA-ADMIN
 import BiodataAddAdminModal from './Modal/Modal.Biodata_AddAdmin'
-////// PRESTASI
-////// PRESTASI-PRESTASI
+////// POINT
+////// POINT-PRESTASI
 import PelanggaranAddModal from './Modal/Modal.Pelanggaran_Add'
+////// PRESTASI
+////// PRESTASI-INSTANSI-ADD
+import InstansiAddModal from './Modal/Modal.Prestasi_AddInstansi'
 
 ////// BIODATA
 ////// BIODATA-SISWA
@@ -45,13 +48,24 @@ export const ButtonAddAdmin = () =>{
         </div>
     )
 }
-////// PELANGGARAN
-////// PELANGGARAN-PELANGGARAN-ADD
+////// POINT
+////// POINT-PELANGGARAN-ADD
 export const ButtonAddPelanggaran = () =>{
     return(
         <div>
             <PelanggaranAddModal />
             <button data-toggle="modal" data-target="#PelanggaranAddModal" className='btn btn-lg btn-block btn-colorize-green'>Create Pelanggaran Detail</button>
+
+        </div>
+    )
+}
+////// PRESTASI
+////// PRESTASI-INSTANSI-ADD
+export const ButtonAddInstansi = () =>{
+    return(
+        <div>
+            <InstansiAddModal />
+            <button data-toggle="modal" data-target="#PrestasiAddInstansiModal" className='btn btn-lg btn-block btn-colorize-green'>Create Instansi Detail</button>
 
         </div>
     )
