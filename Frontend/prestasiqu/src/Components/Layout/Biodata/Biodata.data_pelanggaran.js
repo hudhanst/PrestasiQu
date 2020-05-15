@@ -3,7 +3,7 @@ import React from 'react'
 import { ButtonAddPelanggaran } from '../../Container/Button_Add'
 import Print from '../../Container/Print'
 
-import BiodataTableDataPelanggaran from '../../Container/Detail/BiodataTabel.Datapelanggaran'
+import BiodataTableDataPelanggaran from '../../Container/Detail/PelanggaranTabel.Datapelanggaran'
 import PelanggaranDetailViewModal from '../../Container/Modal/Modal.PelanggaranDetail_View'
 import PelanggaranUpdateModal from '../../Container/Modal/Modal.Pelanggaran_Update'
 import PelanggaranDeleteModal from '../../Container/Modal/Modal.Pelanggaran_Delete'
