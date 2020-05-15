@@ -2,7 +2,7 @@ import React from 'react'
 
 import { connect } from 'react-redux'
 
-import { LoadPelanggaranUpdate, UpdatePelanggaran } from '../../../Store/Actions/Pelanggaran.Actions'
+import { LoadPelanggaranUpdate, UpdatePelanggaran } from '../../../Store/Actions/Point.Actions'
 
 import Loading from '../Loading'
 import DataNotFound from '../DataNotFound'
@@ -17,14 +17,14 @@ class PelanggaranUpdate extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.pelanggaran.Pelanggaran_Update_ID !== prevProps.pelanggaran.Pelanggaran_Update_ID) {
-            const { Pelanggaran_Update_ID } = this.props.pelanggaran
+        if (this.props.point.Pelanggaran_Update_ID !== prevProps.point.Pelanggaran_Update_ID) {
+            const { Pelanggaran_Update_ID } = this.props.point
             if (Pelanggaran_Update_ID !== null) {
                 this.props.LoadPelanggaranUpdate(Pelanggaran_Update_ID)
             }
         }
-        if (this.props.pelanggaran.Pelanggaran_Update !== prevProps.pelanggaran.Pelanggaran_Update) {
-            const { Pelanggaran_Update } = this.props.pelanggaran
+        if (this.props.point.Pelanggaran_Update !== prevProps.point.Pelanggaran_Update) {
+            const { Pelanggaran_Update } = this.props.point
             if (Pelanggaran_Update) {
                 this.setState({
                     id: Pelanggaran_Update.id,
@@ -61,7 +61,7 @@ class PelanggaranUpdate extends React.Component {
         this.props.UpdatePelanggaran(updatedata, authdata)
     }
     render() {
-        const { isPelanggaranLoading } = this.props.pelanggaran
+        const { isPelanggaranLoading } = this.props.point
         const {
             id,
             Nama_Pelanggaran,
@@ -108,7 +108,7 @@ class PelanggaranUpdate extends React.Component {
     }
 }
 const mapStateToProps = state => ({
-    pelanggaran: state.Pelanggaran,
+    point: state.Point,
     auth: state.Auth
 })
 export default connect(mapStateToProps, { LoadPelanggaranUpdate, UpdatePelanggaran })(PelanggaranUpdate)

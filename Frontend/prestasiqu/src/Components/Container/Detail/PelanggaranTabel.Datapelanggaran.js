@@ -2,11 +2,11 @@ import React from 'react'
 
 import { connect } from 'react-redux'
 
-import { LoadListofPelanggaran, Button_Pelanggaran_DetailView, Button_UpdatePelanggaran, } from '../../../Store/Actions/Pelanggaran.Actions'
+import { LoadListofPelanggaran, Button_Pelanggaran_DetailView, Button_UpdatePelanggaran, } from '../../../Store/Actions/Point.Actions'
 import { Short_Column_INT, Short_Column_STR } from '../Shorting'
 import DataNotFound from '../DataNotFound'
 
-class BiodataTableDataPelanggaran extends React.Component {
+class PelanggaranTabelDataPelanggaran extends React.Component {
     componentDidMount() {
         this.props.LoadListofPelanggaran()
     }
@@ -23,7 +23,7 @@ class BiodataTableDataPelanggaran extends React.Component {
         Short_Column_STR('tabeldatapelanggaran', ColumnNumb)
     }
     render() {
-        const { Data_Pelanggaran } = this.props.pelanggaran
+        const { Data_Pelanggaran } = this.props.point
         const { user } = this.props.auth
         return (
             <div>
@@ -80,8 +80,8 @@ class BiodataTableDataPelanggaran extends React.Component {
 
 const mapStateToProps = state => ({
     // biodata: state.Biodata,
-    pelanggaran: state.Pelanggaran,
+    point: state.Point,
     auth: state.Auth,
 })
 
-export default connect(mapStateToProps, { LoadListofPelanggaran, Button_Pelanggaran_DetailView, Button_UpdatePelanggaran})(BiodataTableDataPelanggaran)
+export default connect(mapStateToProps, { LoadListofPelanggaran, Button_Pelanggaran_DetailView, Button_UpdatePelanggaran})(PelanggaranTabelDataPelanggaran)

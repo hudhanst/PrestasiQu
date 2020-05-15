@@ -2,7 +2,7 @@ import React from 'react'
 
 import { connect } from 'react-redux'
 
-import { CreatePelanggaran } from '../../../Store/Actions/Pelanggaran.Actions'
+import { CreatePelanggaran } from '../../../Store/Actions/Point.Actions'
 
 class PelanggaranAdd extends React.Component {
     state = {
@@ -67,7 +67,7 @@ class PelanggaranAdd extends React.Component {
     }
 }
 const mapStateToProps = state => ({
-    pelanggaran: state.Pelanggaran,
+    point: state.Point,
     auth: state.Auth
 })
 

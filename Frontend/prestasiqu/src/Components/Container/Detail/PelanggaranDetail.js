@@ -2,22 +2,22 @@ import React from 'react'
 
 import { connect } from 'react-redux'
 
-import { LoadPelanggaranDetail } from '../../../Store/Actions/Pelanggaran.Actions'
+import { LoadPelanggaranDetail } from '../../../Store/Actions/Point.Actions'
 
 import DataNotFound from '../../Container/DataNotFound'
 import Loading from '../Loading'
 
 class PelanggaraDetail extends React.Component {
     componentDidUpdate(prevProps) {
-        if (this.props.pelanggaran.Pelanggaran_ID !== prevProps.pelanggaran.Pelanggaran_ID) {
-            const { Pelanggaran_ID } = this.props.pelanggaran
+        if (this.props.point.Pelanggaran_ID !== prevProps.point.Pelanggaran_ID) {
+            const { Pelanggaran_ID } = this.props.point
             if (Pelanggaran_ID !== null) {
                 this.props.LoadPelanggaranDetail(Pelanggaran_ID)
             }
         }
     }
     render() {
-        const { isPelanggaranLoading, Pelanggaran } = this.props.pelanggaran
+        const { isPelanggaranLoading, Pelanggaran } = this.props.point
         if (isPelanggaranLoading === true) {
             return (
                 <Loading />
@@ -49,7 +49,7 @@ class PelanggaraDetail extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    pelanggaran: state.Pelanggaran,
+    point: state.Point,
 })
 
 export default connect(mapStateToProps, { LoadPelanggaranDetail })(PelanggaraDetail)

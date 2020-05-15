@@ -2,7 +2,7 @@ import React from 'react'
 
 import { connect } from 'react-redux'
 
-import {DeletePelanggaran} from '../../../Store/Actions/Pelanggaran.Actions'
+import {DeletePelanggaran} from '../../../Store/Actions/Point.Actions'
 
 import DataNotFound from '../DataNotFound'
 import PelanggaraDetail from '../Detail/PelanggaranDetail'
@@ -20,7 +20,7 @@ class PelanggaranDelete extends React.Component {
         this.props.DeletePelanggaran(PelanggaranID, authdata)
     }
     render() {
-        const {Pelanggaran} = this.props.pelanggaran
+        const {Pelanggaran} = this.props.point
         return (
             <div>
                 {Pelanggaran?(
@@ -41,7 +41,7 @@ class PelanggaranDelete extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    pelanggaran: state.Pelanggaran,
+    point: state.Point,
     auth: state.Auth
 })
 
