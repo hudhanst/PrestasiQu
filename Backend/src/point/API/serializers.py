@@ -12,7 +12,8 @@ class Get_List_Pelanggaran_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Pelanggaran
         # fields = "__all__"
-        fields = ['id','Nama_Pelanggaran','Jenis_Pelanggaran','Pelanggaran_Point']
+        fields = ['id', 'Nama_Pelanggaran',
+                  'Jenis_Pelanggaran', 'Pelanggaran_Point']
 
 
 class Get_Pelanggaran_Detail_Serializer(serializers.ModelSerializer):
@@ -22,14 +23,35 @@ class Get_Pelanggaran_Detail_Serializer(serializers.ModelSerializer):
 # ##GET-POINT
 
 
+class Get_Unconfirm_List_Point_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Point
+        fields = ['id', 'Nama_Pengaju', 'Nomer_Induk_Dituju',
+                  'Nama_Dituju', 'Nama_Pelanggaran', 'Tanggal_Pengajuan']
+
+
+class Get_Confirm_List_Point_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Point
+        fields = ['id', 'Nama_Pengaju', 'Nomer_Induk_Dituju',
+                  'Nama_Dituju', 'Nama_Pelanggaran', 'Tanggal_Diterima', 'Status']
+
+
 class Get_List_Point_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Point
         # fields = "__all__"
-        fields = ['id','Nama_Pengaju','Nama_Dituju','Nama_Pelanggaran','Tanggal_Pengajuan']
+        fields = ['id', 'Nama_Pengaju', 'Nama_Dituju',
+                  'Nama_Pelanggaran', 'Tanggal_Pengajuan']
 
 
 class Get_Point_Detail_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Point
+        fields = "__all__"
+
+
+class Get_Point_List_byUser_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Point
         fields = "__all__"
@@ -84,13 +106,31 @@ class Register_Point_Serializer(serializers.ModelSerializer):
         #     'Nama_Pelanggaran':{'initial':None},
         # }
 # ##UPDATE-PELANGGARAN
-class  Update_Pelanggaran_Serializer(serializers.ModelSerializer):
+
+
+class Update_Pelanggaran_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Pelanggaran
         fields = "__all__"
-        read_only_fields = ['id','Nama_Pelanggaran']
+        read_only_fields = ['id', 'Nama_Pelanggaran']
 # ##UPDATE-POINT
+
+
+class Update_Point_PointAcception_Accepted_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Point
+        fields = "__all__"
+        # fields = ['Status','Nomer_Induk_Assessor','Nama_Assessor','Tanggal_Diterima']
+        # read_only_fields = ['Status','Nama_Assessor','Tanggal_Diterima']
+
+
+class Update_Point_PointAcception_Rejected_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Point
+        fields = "__all__"
 # ##DELETE-PELANGGARAN
+
+
 class Delete_Pelanggaran_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Pelanggaran

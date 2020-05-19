@@ -8,9 +8,12 @@ from .serializers import (
     # ##GET
     Get_List_All_Biodata_Serializer,
     Get_Biodata_Detail_Serializer,
+    Get_Biodata_Point_Serializer,
+    Get_Biodata_NomerInduk_Serializer,
     Get_List_Siswa_Biodata_Serializer,
     Get_List_Staff_Biodata_Serializer,
     Get_List_Admin_Biodata_Serializer,
+    Get_List_All_Biodata_Serializer,
     # ##REGISTER
     Register_Biodata_asSiswa_Serializer,
     Register_Biodata_asStaff_Serializer,
@@ -18,6 +21,7 @@ from .serializers import (
     # ##UPDATE
     Update_Biodata_Full_Serializer,
     Update_Biodata_Staff_Serializer,
+    Update_Biodata_Point_Serializer,
     # ##DELETE
     Delete_Biodata_Serializer,
 )
@@ -45,6 +49,22 @@ class Get_Biodata_Detail_API(generics.RetrieveAPIView):
         # permissions.IsAuthenticated,
     ]
     serializer_class = Get_Biodata_Detail_Serializer
+    queryset = Biodata.objects.all()
+
+
+class Get_Biodata_Point_API(generics.RetrieveAPIView):
+    permission_classes = [
+        permissions.AllowAny,
+    ]
+    serializer_class = Get_Biodata_Point_Serializer
+    queryset = Biodata.objects.all()
+
+
+class Get_Biodata_NomerInduk_API(generics.RetrieveAPIView):
+    permission_classes = [
+        permissions.AllowAny,
+    ]
+    serializer_class = Get_Biodata_NomerInduk_Serializer
     queryset = Biodata.objects.all()
 
 
@@ -90,6 +110,14 @@ class Get_List_Admin_Biodata_API(generics.ListAPIView):
         queryset = Biodata.objects.filter(
             id__in=[prf.profile_id for prf in Profileid])
         return queryset
+
+
+class Get_List_All_Biodata_API(generics.ListAPIView):
+    permission_classes = [
+        permissions.AllowAny,
+    ]
+    serializer_class = Get_List_All_Biodata_Serializer
+    queryset = Biodata.objects.all()
 # ##REGISTER
 
 
@@ -181,6 +209,15 @@ class Update_Biodata_API(generics.RetrieveUpdateAPIView):
             return Update_Biodata_Full_Serializer
         return Update_Biodata_Staff_Serializer
     queryset = Biodata.objects.all()
+
+
+class Update_Biodata_Point_API(generics.RetrieveUpdateAPIView):
+    permission_classes = [
+        permissions.AllowAny,
+    ]
+    serializer_class = Update_Biodata_Point_Serializer
+    queryset = Biodata.objects.all()
+    lookup_field = 'NomerInduk'
 # ##DELETE
 
 

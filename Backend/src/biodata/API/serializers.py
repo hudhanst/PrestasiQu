@@ -22,6 +22,19 @@ class Get_Biodata_Detail_Serializer(serializers.ModelSerializer):
         model = Biodata
         fields = ('id', 'NomerInduk', 'Nama', 'Agama', 'TempatLahir', 'TanggalLahir', 'Alamat', 'NomerTLP',
                   'Email', 'PendidikanTerakhir', 'InstansiPendidikanTerakhir', 'Point', 'Status', 'Profilepicture')
+
+
+class Get_Biodata_Point_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Biodata
+        fields = ['Point', ]
+        # read_only_fields = ['Point',]
+
+
+class Get_Biodata_NomerInduk_Serializer (serializers.ModelSerializer):
+    class Meta:
+        model = Biodata
+        fields = ['NomerInduk', ]
 # ##GET-SISWA
 
 
@@ -41,6 +54,12 @@ class Get_List_Admin_Biodata_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Biodata
         fields = ['id', 'NomerInduk', 'Nama']
+
+
+class Get_List_All_Biodata_Serializer (serializers.ModelSerializer):
+    class Meta:
+        model = Biodata
+        fields = ['id', 'NomerInduk', 'Nama', 'Status']
 # ##REGISTER
 
 
@@ -98,6 +117,13 @@ class Update_Biodata_Staff_Serializer(serializers.ModelSerializer):
             'NomerInduk': {'read_only': True},
         }
         # fields = "__all__"
+
+
+class Update_Biodata_Point_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Biodata
+        fields = ['id', 'NomerInduk', 'Point']
+        read_only_fields = ['id', 'NomerInduk']
 # ##DELETE
 
 
