@@ -10,6 +10,8 @@ import BiodataAddAdminModal from './Modal/Modal.Biodata_AddAdmin'
 ////// POINT
 ////// POINT-PRESTASI
 import PelanggaranAddModal from './Modal/Modal.Pelanggaran_Add'
+////// POINT-POINT-ADD
+import PointAddModal from './Modal/Modal.Point_AddPoint'
 ////// PRESTASI
 ////// PRESTASI-INSTANSI-ADD
 import InstansiAddModal from './Modal/Modal.Prestasi_AddInstansi'
@@ -55,6 +57,16 @@ export const ButtonAddPelanggaran = () =>{
         <div>
             <PelanggaranAddModal />
             <button data-toggle="modal" data-target="#PelanggaranAddModal" className='btn btn-lg btn-block btn-colorize-green'>Create Pelanggaran Detail</button>
+
+        </div>
+    )
+}
+////// POINT-POINT-ADD
+export const ButtonAddPoint = () =>{
+    return(
+        <div>
+            <PointAddModal />
+            <button data-toggle="modal" data-target="#PointAddPointModal" className='btn btn-lg btn-block btn-colorize-green'>Create a Point</button>
 
         </div>
     )

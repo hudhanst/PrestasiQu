@@ -39,6 +39,8 @@ import {
     ADMIN_ACCOUNT_CREATED,
     ADMIN_ACCOUNT_FAILED_CREATE,
     ADMIN_FULLY_CREATED,
+    ////// BIODATA ALL
+    ALL_DATA_LOADED,
 } from '../Actions/Type.Actions'
 
 const initialState ={
@@ -60,6 +62,8 @@ const initialState ={
     Data_Staff : [],
     ////// BIODATA ADMIN
     Data_Admin : [],
+    ////// BIODATA ALL
+    Data_All : [],
 }
 
 export default function(state = initialState, action){
@@ -206,6 +210,12 @@ export default function(state = initialState, action){
         case ADMIN_FULLY_CREATED:
             return{
                 ...state,
+            }
+        ////// BIODATA ALL
+        case ALL_DATA_LOADED:
+            return{
+                ...state,
+                Data_All :action.payload,
             }
         default:return state
     }

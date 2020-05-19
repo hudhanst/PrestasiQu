@@ -46,6 +46,9 @@ import {
     ADMIN_ACCOUNT_CREATED,
     ADMIN_ACCOUNT_FAILED_CREATE,
     ADMIN_FULLY_CREATED,
+    ////// BIODATA ALL
+    ALL_DATA_LOADED,
+
 } from './Type.Actions'
 
 import {tokenConfig, tokenConfigmultipleform} from './Auth.Actions'
@@ -369,5 +372,19 @@ export const CreateBiodataasAdmin = (Data, authdata) =>(dispatch, getState)=>{
     }).catch(bioerr=>{
         console.log('ADMIN_BIODATA_FAILED_CREATE',bioerr)
         dispatch({type:ADMIN_BIODATA_FAILED_CREATE})
+    })
+}
+////// BIODATA ALL
+export const LoadListofAll = () => (dispatch, getState)=>{
+    dispatch({type:BIODATA_LOADING})
+    axios.get('http://127.0.0.1:8000/api/biodata/list_biodata_all', tokenConfig(getState))
+    .then(res=>{
+        // console.log(res)
+        dispatch({
+            type : ALL_DATA_LOADED,
+            payload : res.data
+        })
+    }).catch(err=>{
+        console.log(err)
     })
 }

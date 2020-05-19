@@ -148,6 +148,12 @@ height: 100%;
 .modal-footer{
   margin-top: 20px;
 }
+.modal-super{
+  max-width: 90%;
+}
+.modal-content-super{
+  border: 1px solid purple;
+}
 /* ***END-BOOTSRAP_ADJUST*** */
 
 /* ***LOADING*** */
@@ -297,6 +303,49 @@ height: 100%;
   z-index: 1;
 }
 /* ***END-BIODATA*** */
+
+/* ***POINT*** */
+.lampiran-img{
+  height: 500px;
+  width: 90%;
+  border: 5px solid black;
+  margin: 10px auto 20px auto;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+.point-akhir{
+  background-color: #F5F5F5;
+  font-size: 100px;
+  margin-top: 10%;
+}
+/* ***POINT-POINT_SCORE*** */
+.pointscore{
+  font-size: +800%;
+  font-weight: 600;
+  text-align: center;
+  /* text-shadow: 1px 1px black; */
+  margin: 70px auto 10px auto;
+  display: block;
+}
+.pointgood{
+  text-shadow: 1px 1px black;
+  color: #4CAF50 ;
+}
+.pointwarning{
+  text-shadow: 1px 1px black;
+  color: #FFEB3B ;
+}
+.pointdenger{
+  text-shadow: 1px 1px black;
+  color: red;
+}
+.pointdead{
+  text-shadow: 1px 1px black;
+  color: #610104;
+}
+/* ***ENDPOINT-POINT_SCORE*** */
+/* ***END-POINT*** */
 
 /* ***RESPONSIVE*** */
 /* //TODO when scroll navbar become fix */

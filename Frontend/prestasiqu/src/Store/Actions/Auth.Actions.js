@@ -57,6 +57,15 @@ export const LoadUser = () => (dispatch, getState)=>{
         })
     }).catch(err=>{
         console.log(err)
+        if(err.response){
+            if(err.response.status === 401){
+                dispatch({type: USER_EXPIRED})
+            }else{
+                console.log(err)
+            }
+        }else{
+            console.log(err)
+        }
     })
 }
 //TODO export const LoadPermission
