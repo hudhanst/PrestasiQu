@@ -157,13 +157,13 @@ class Update_Point_PointAcception_Accepted_API(generics.RetrieveUpdateAPIView):
         return Point.objects.get(pk=pk)
 
     def patch(self, request, pk, *args, **kwargs):
-        logging.warning(pk)
+        # logging.warning(pk)
 
         originalmodel_object = self.get_object(pk=pk)
         serializer = self.get_serializer(
             originalmodel_object, data=request.data, partial=True)
         if serializer.is_valid():
-            logging.warning('terpanggil')
+            # logging.warning('terpanggil')
 
             serializer.validated_data['Status'] = 'Accepted'
             serializer.validated_data['Nama_Assessor'] = Biodata.objects.get(
@@ -190,13 +190,13 @@ class Update_Point_PointAcception_Rejected_API(generics.RetrieveUpdateAPIView):
         return Point.objects.get(pk=pk)
 
     def patch(self, request, pk, *args, **kwargs):
-        logging.warning(pk)
+        # logging.warning(pk)
 
         originalmodel_object = self.get_object(pk=pk)
         serializer = self.get_serializer(
             originalmodel_object, data=request.data, partial=True)
         if serializer.is_valid():
-            logging.warning('terpanggil')
+            # logging.warning('terpanggil')
 
             serializer.validated_data['Status'] = 'Rejected'
             serializer.validated_data['Nama_Assessor'] = Biodata.objects.get(

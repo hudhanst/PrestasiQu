@@ -218,6 +218,56 @@ class Update_Biodata_Point_API(generics.RetrieveUpdateAPIView):
     serializer_class = Update_Biodata_Point_Serializer
     queryset = Biodata.objects.all()
     lookup_field = 'NomerInduk'
+class Update_Biodata_Point_Accretion_API(generics.RetrieveUpdateAPIView):
+    permission_classes = [
+        permissions.AllowAny,
+    ]
+    serializer_class = Update_Biodata_Point_Serializer
+    # queryset = Biodata.objects.all()
+    # lookup_field = 'NomerInduk'
+
+    def get_object(self, NomerInduk):
+        return Biodata.objects.get(NomerInduk=NomerInduk)
+
+    def patch(self, request, NomerInduk, *args, **kwargs):
+        # logging.warning(NomerInduk)
+
+        originalmodel_object = self.get_object(NomerInduk=NomerInduk)
+        serializer = self.get_serializer(
+            originalmodel_object, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.validated_data['Point'] = ((Biodata.objects.get(NomerInduk=NomerInduk).Point)+(serializer.validated_data['Point']))
+
+            serializer.save()
+            biodata = serializer.validated_data
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors)
+class Update_Biodata_Point_Subtraction_API(generics.RetrieveUpdateAPIView):
+    permission_classes = [
+        permissions.AllowAny,
+    ]
+    serializer_class = Update_Biodata_Point_Serializer
+    # queryset = Biodata.objects.all()
+    # lookup_field = 'NomerInduk'
+
+    def get_object(self, NomerInduk):
+        return Biodata.objects.get(NomerInduk=NomerInduk)
+
+    def patch(self, request, NomerInduk, *args, **kwargs):
+        # logging.warning(NomerInduk)
+
+        originalmodel_object = self.get_object(NomerInduk=NomerInduk)
+        serializer = self.get_serializer(
+            originalmodel_object, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.validated_data['Point'] = ((Biodata.objects.get(NomerInduk=NomerInduk).Point)-(serializer.validated_data['Point']))
+
+            serializer.save()
+            biodata = serializer.validated_data
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors)
 # ##DELETE
 
 

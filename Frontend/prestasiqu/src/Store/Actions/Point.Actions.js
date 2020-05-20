@@ -250,12 +250,12 @@ export const PointAcception = (PointID, UserNI, AcceptionAction, authdata) => (d
         axios.patch(`http://127.0.0.1:8000/api/point/point-acception-accepted/${PointID}`, bodydata, tokenConfig(getState))
             .then(paares => {
                 console.log(paares)
-                const Point_Akhir = paares.data.Point_Akhir
+                const Point_Akhir = paares.data.Point_Pengurang
                 const NomerIndukDituju = paares.data.Nomer_Induk_Dituju
                 const PointUpdateData = new FormData();
 
                 PointUpdateData.append('Point', Point_Akhir)
-                axios.patch(`http://127.0.0.1:8000/api/biodata/update_biodata_point/${NomerIndukDituju}`, PointUpdateData, tokenConfigmultipleform(getState))
+                axios.patch(`http://127.0.0.1:8000/api/biodata/update_biodata_point/${NomerIndukDituju}/subtraction`, PointUpdateData, tokenConfigmultipleform(getState))
                     .then(pures => {
                         console.log(pures)
                     }).catch(puerr => {

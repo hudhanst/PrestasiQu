@@ -17,6 +17,8 @@ from .API.api import (
     # ##UPDATE
     Update_Biodata_API,
     Update_Biodata_Point_API,
+    Update_Biodata_Point_Accretion_API,
+    Update_Biodata_Point_Subtraction_API,
     # ##DELETE
     Delete_Biodata_API,
 )
@@ -42,6 +44,8 @@ urlpatterns = [
     # ##UPDATE
     path('api/biodata/user/<pk>/update', Update_Biodata_API.as_view()),
     path('api/biodata/update_biodata_point/<NomerInduk>', Update_Biodata_Point_API.as_view()),
+    path('api/biodata/update_biodata_point/<NomerInduk>/accretion', Update_Biodata_Point_Accretion_API.as_view()),
+    path('api/biodata/update_biodata_point/<NomerInduk>/subtraction', Update_Biodata_Point_Subtraction_API.as_view()),
     # ##DELETE
     path('api/biodata/user/<pk>/delete', Delete_Biodata_API.as_view()),
 ]

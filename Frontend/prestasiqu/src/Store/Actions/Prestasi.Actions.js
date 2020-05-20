@@ -257,12 +257,12 @@ export const PrestasiAcception = (PrestasiID, UserNI, AcceptionAction, authdata)
         axios.patch(`http://127.0.0.1:8000/api/prestasi/prestasi-acception-accepted/${PrestasiID}`, bodydata, tokenConfig(getState))
             .then(paares => {
                 console.log(paares)
-                const Point_Akhir = paares.data.Point_Akhir
+                const Point_Akhir = paares.data.Prestasi_Point
                 const NomerIndukDituju = paares.data.Nomer_Induk_Dituju
                 const PointUpdateData = new FormData();
 
                 PointUpdateData.append('Point', Point_Akhir)
-                axios.patch(`http://127.0.0.1:8000/api/biodata/update_biodata_point/${NomerIndukDituju}`, PointUpdateData, tokenConfigmultipleform(getState))
+                axios.patch(`http://127.0.0.1:8000/api/biodata/update_biodata_point/${NomerIndukDituju}/accretion`, PointUpdateData, tokenConfigmultipleform(getState))
                     .then(pures => {
                         console.log(pures)
                     }).catch(puerr => {
