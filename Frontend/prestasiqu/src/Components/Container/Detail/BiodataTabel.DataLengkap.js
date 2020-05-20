@@ -10,20 +10,14 @@ class BiodataDataLengkap extends React.Component {
     componentDidMount() {
         this.props.LoadListofAll()
     }
-    ButtonPointSubmission(BiodataID) {
+    ButtonSubmission(BiodataID) {
         this.props.Button_DetailView(BiodataID)
     }
-    // ButtonUpdateBiodata(BiodataID) {
-    //     this.props.Button_UpdateBiodata(BiodataID)
-    // }
-    // ButtonUpdateBiodataAccount(BiodataID) {
-    //     this.props.Button_UpdateBiodataAccount(BiodataID)
-    // }
     ButtonShortINT(ColumnNumb){
-        Short_Column_INT('tabeldatasiswa',ColumnNumb)
+        Short_Column_INT('tabeldatalengkap',ColumnNumb)
     }
     ButtonShortSTR(ColumnNumb){
-        Short_Column_STR('tabeldatasiswa',ColumnNumb)
+        Short_Column_STR('tabeldatalengkap',ColumnNumb)
     }
     render() {
         const { Data_All } = this.props.biodata
@@ -58,12 +52,12 @@ class BiodataDataLengkap extends React.Component {
                                             <td>{datasiswa.Status}</td>
                                             {((user.admin || user.superuser)&&(this.props.proptype === 'prestasi')) ? (
                                                 <td>
-                                                    <button onClick={() => this.ButtonPointSubmission(datasiswa.id)} data-toggle="modal" data-target="#AccountUpdateModal" className='btn btn-table-colorize-green'>Prestasi</button>
+                                                    <button onClick={() => this.ButtonSubmission(datasiswa.id)} data-toggle="modal" data-target="#PrestasiSubmissionModal" className='btn btn-table-colorize-green'>Prestasi</button>
                                                 </td>
                                             ) : null}
                                             {((user.admin || user.superuser)&&(this.props.proptype === 'point')) ? (
                                                 <td>
-                                                    <button onClick={() => this.ButtonPointSubmission(datasiswa.id)} data-toggle="modal" data-target="#PointSubmissionModal" className='btn btn-table-colorize-green'>Point</button>
+                                                    <button onClick={() => this.ButtonSubmission(datasiswa.id)} data-toggle="modal" data-target="#PointSubmissionModal" className='btn btn-table-colorize-green'>Point</button>
                                                 </td>
                                             ) : null}
                                         </tr>
