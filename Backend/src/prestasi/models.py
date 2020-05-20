@@ -38,10 +38,11 @@ class Prestasi(models.Model):
     # ## DATA-PRESTASI
     Nama_Prestasi = models.CharField(max_length=240, null=False, blank=False)
     No_Sertifikat = models.CharField(max_length=100, null=True, blank=True)
-    Katagori_Prestasi = models.CharField(max_length=11, choices=STATUS_CHOICES, null=True, blank=True, default=None)
+    Katagori_Prestasi = models.CharField(max_length=20, null=True, blank=True, default=None)
     Tingkatan_Prestasi = models.CharField(max_length=20, choices=TINGKATAN_CHOICES)
+    Prestasi_Point = models.PositiveSmallIntegerField(null=False, blank=False)
     # ## DATA-INSTANSI
-    Nama_Instansi = models.ForeignKey(Instansi, on_delete=models.DO_NOTHING, default=None)
+    Nama_Instansi = models.ForeignKey(Instansi, to_field='Nama_Instansi', on_delete=models.DO_NOTHING, related_name='PrestasiNamaInstansi', default=None)
     # ## DATA-PELENGKAP
     Lampiran = models.ImageField(upload_to="PrestasiLampiran", blank=True, null=True)
     Keterangan = models.TextField(max_length=240, null=True, blank=True, default=None)
