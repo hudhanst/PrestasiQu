@@ -89,6 +89,7 @@ export const CreateInstansi = (Data, authdata) => (dispatch, getState) => {
         .then(res => {
             //    console.log(res)
             dispatch({ type: INSTANSI_CREATED })
+            window.location.reload(true)
         }).catch(err => {
             console.log(err)
         })
@@ -241,6 +242,7 @@ export const PrestasiSubmit = (UserNomerInduk, TargetBiodataID, ket, authdata) =
                 .then(pores => {
                     console.log(pores)
                     dispatch({ type: PRESTASI_PRESTASISUBMISSION_CREATED })
+                    window.location.reload(true)
                 }).catch(poerr => {
                     console.log(poerr)
                 })
@@ -265,6 +267,7 @@ export const PrestasiAcception = (PrestasiID, UserNI, AcceptionAction, authdata)
                 axios.patch(`http://127.0.0.1:8000/api/biodata/update_biodata_point/${NomerIndukDituju}/accretion`, PointUpdateData, tokenConfigmultipleform(getState))
                     .then(pures => {
                         console.log(pures)
+                        window.location.reload(true)
                     }).catch(puerr => {
                         console.log(puerr)
                     })

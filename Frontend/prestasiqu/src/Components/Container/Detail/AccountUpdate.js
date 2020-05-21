@@ -83,7 +83,7 @@ class AccountUpdateModal extends React.Component {
         }
         const BiodataID = this.state.profile
         if ((this.state.changepassword === true) && ((this.state.password1 === '' || this.state.password1 === null) || (this.state.password1 !== this.state.password2))) {
-            E.preventDefault()
+            // E.preventDefault()
         } else {
             this.props.UpdateBiodataAccount(BiodataID, updatedata, authdata)
         }

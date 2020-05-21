@@ -60,6 +60,7 @@ class BiodataUpdateModal extends React.Component {
         this.setState({ [E.target.name]: E.target.files[0] })
     }
     Form_OnSubmit = E => {
+        E.preventDefault()
         const updatedata = {
             id: this.state.id,
             NomerInduk: this.state.NomerInduk,

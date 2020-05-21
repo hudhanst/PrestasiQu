@@ -114,7 +114,7 @@ export const UpdateBiodata = (data, authdata) => (dispatch, getState)=>{
     bodydata.append('NomerTLP', data.NomerTLP);
     bodydata.append('Email', data.Email);
     bodydata.append('InstansiPendidikanTerakhir', data.InstansiPendidikanTerakhir);
-    if (authdata.siswa === true && (authdata.staff === false || authdata.admin === false)){
+    if (authdata.staff){
         bodydata.append('PendidikanTerakhir', data.PendidikanTerakhir);
         bodydata.append('Status', data.Status);
     }
@@ -134,6 +134,7 @@ export const UpdateBiodata = (data, authdata) => (dispatch, getState)=>{
         })
         // console.log('res',res)
         dispatch(SuccessMassages('update biodata berhasil'))
+        window.location.reload(true)
     }).catch(err=>{
         dispatch(ErrorMassages(err.response.data))
         console.log(err)
@@ -171,8 +172,6 @@ export const LoadBiodataAccountUpdate = (BiodataID) => (dispatch, getState)=>{
     })
 }
 export const UpdateBiodataAccount = (BiodataID, data, authdata) =>(dispatch, getState)=>{
-    // console.log('data',data)
-    // console.log('authdata',authdata)
     const bodydata = new FormData();
 
     bodydata.append('nomerinduk', data.nomerinduk);
@@ -182,7 +181,6 @@ export const UpdateBiodataAccount = (BiodataID, data, authdata) =>(dispatch, get
     }else{
         console.log('password tidak ganti')
     }
-    // bodydata.append('password', data.password);
     bodydata.append('active', data.active);
     bodydata.append('siswa', data.siswa);
     bodydata.append('staff', data.staff);
@@ -199,6 +197,7 @@ export const UpdateBiodataAccount = (BiodataID, data, authdata) =>(dispatch, get
         })
         console.log('res',res)
         dispatch(SuccessMassages('update account berhasil'))
+        window.location.reload(true)
     }).catch(err=>{
         dispatch(ErrorMassages(err.response.data))
         console.log(err)
@@ -251,6 +250,7 @@ export const CreateBiodataasSiswa = (Data, authdata) =>(dispatch, getState)=>{
             dispatch({type:SISWA_ACCOUNT_CREATED})
             console.log('SISWA_FULLY_CREATED')
             dispatch({type:SISWA_FULLY_CREATED})
+            window.location.reload(true)
         }).catch(accerr=>{
             console.log('SISWA_ACCOUNT_FAILED_CREATE',accerr)
             dispatch({type:SISWA_ACCOUNT_FAILED_CREATE})
@@ -308,6 +308,7 @@ export const CreateBiodataasStaff = (Data, authdata) =>(dispatch, getState)=>{
             dispatch({type:STAFF_ACCOUNT_CREATED})
             console.log('STAFF_FULLY_CREATED')
             dispatch({type:STAFF_FULLY_CREATED})
+            window.location.reload(true)
         }).catch(accerr=>{
             console.log('STAFF_ACCOUNT_FAILED_CREATE',accerr)
             dispatch({type:STAFF_ACCOUNT_FAILED_CREATE})
@@ -365,6 +366,7 @@ export const CreateBiodataasAdmin = (Data, authdata) =>(dispatch, getState)=>{
             dispatch({type:ADMIN_ACCOUNT_CREATED})
             console.log('ADMIN_FULLY_CREATED')
             dispatch({type:ADMIN_FULLY_CREATED})
+            window.location.reload(true)
         }).catch(accerr=>{
             console.log('ADMIN_ACCOUNT_FAILED_CREATE',accerr)
             dispatch({type:ADMIN_ACCOUNT_FAILED_CREATE})

@@ -87,6 +87,7 @@ export const CreatePelanggaran = (Data, authdata) => (dispatch, getState) => {
         .then(res => {
             console.log(res)
             dispatch({ type: PELANGGARAN_CREATED })
+            window.location.reload(true)
         }).catch(err => {
             console.log(err)
         })
@@ -234,6 +235,7 @@ export const PointSubmit = (UserNomerInduk, TargetBiodataID, ket, authdata) => (
                 .then(pores => {
                     console.log(pores)
                     dispatch({ type: POINT_POINTSUBMISSION_CREATED })
+                    window.location.reload(true)
                 }).catch(poerr => {
                     console.log(poerr)
                 })
@@ -258,6 +260,7 @@ export const PointAcception = (PointID, UserNI, AcceptionAction, authdata) => (d
                 axios.patch(`http://127.0.0.1:8000/api/biodata/update_biodata_point/${NomerIndukDituju}/subtraction`, PointUpdateData, tokenConfigmultipleform(getState))
                     .then(pures => {
                         console.log(pures)
+                        window.location.reload(true)
                     }).catch(puerr => {
                         console.log(puerr)
                     })
