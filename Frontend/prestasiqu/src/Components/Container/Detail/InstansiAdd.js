@@ -42,17 +42,11 @@ class InstansiAdd extends React.Component {
                 <form onSubmit={this.Form_OnSubmit}>
                     <div>
                         <label>Nama Instansi:</label><br />
-                        <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Nama_Instansi' value={Nama_Instansi} required /><br />
+                        <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Nama_Instansi' value={Nama_Instansi} placeholder='Masukkan nama instansi' required /><br />
                         <label>Jenis Instansi:</label><br />
-                        {/* <select className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Jenis_Instansi' value={Jenis_Instansi} required >
-                            <option value="" disabled> -- select an option -- </option>
-                            <option value="Ringan">Ringan</option>
-                            <option value="Sedang">Sedang</option>
-                            <option value="Berat">Berat</option>
-                        </select> */}
-                        <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Jenis_Instansi' value={Jenis_Instansi} /><br />
+                        <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Jenis_Instansi' value={Jenis_Instansi} placeholder='Masukkan jenis instansi' /><br />
                         <label>KeteranganInstansi:</label><br />
-                        <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Keterangan_Instansi' value={Keterangan_Instansi} /><br />
+                        <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Keterangan_Instansi' value={Keterangan_Instansi} placeholder='Masukkan keterangan tambahan tentang instansi' /><br />
                     </div>
                     <div className="modal-footer">
                         <button type="submit" className="btn btn-lg btn-block btn-colorize-green">Create</button>

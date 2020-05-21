@@ -8,7 +8,7 @@ const PelanggaranAddModal = () => {
             <div className="modal-dialog modal-lg" role="document">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h2 className="modal-title font-weight-bold">Create Admin Biodata</h2>
+                        <h2 className="modal-title font-weight-bold">Create Pelanggaran</h2>
                         <button type="button" className="close position-right" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

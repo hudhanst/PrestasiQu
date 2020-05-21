@@ -75,30 +75,30 @@ class PrestasiSubmission extends React.Component {
                     {(Data_Instansi && Biodata_ID) ? (
                         <form onSubmit={this.Form_OnSubmit}>
                             <div>
-                                <label>Nama_Prestasi:</label><br />
-                                <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Nama_Prestasi' value={Nama_Prestasi} required /><br />
-                                <label>No_Sertifikat:</label><br />
-                                <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='No_Sertifikat' value={No_Sertifikat} /><br />
-                                <label>Katagori_Prestasi:</label><br />
-                                <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Katagori_Prestasi' value={Katagori_Prestasi} /><br />
-                                <label>Tingkatan_Prestasi:</label><br />
+                                <label>Nama Prestasi:</label><br />
+                                <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Nama_Prestasi' value={Nama_Prestasi} placeholder='Masukkan nama prestasi' required /><br />
+                                <label>No Sertifikat:</label><br />
+                                <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='No_Sertifikat' value={No_Sertifikat} placeholder='Masukkan no sertifikat jika ada' /><br />
+                                <label>Katagori Prestasi:</label><br />
+                                <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Katagori_Prestasi' value={Katagori_Prestasi} placeholder='Masukkan katagori prestasi' /><br />
+                                <label>Tingkatan Prestasi:</label><br />
                                 <select className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Tingkatan_Prestasi' value={Tingkatan_Prestasi} required>
                                     <option value="" disabled> -- select an option -- </option>
                                     {Tingkatan_Prestasi_Choices.map((listdata) =>
                                         <option key={listdata} value={listdata}>{listdata}</option>
                                     )}
                                 </select>
-                                <label>Nama_Instansi:</label><br />
+                                <label>Nama Instansi:</label><br />
                                 <select className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Nama_Instansi' value={Nama_Instansi} required>
                                     <option value="" disabled> -- select an option -- </option>
                                     {Data_Instansi.map((listdata) =>
                                         <option key={listdata.id} value={listdata.Nama_Instansi}>{listdata.Nama_Instansi}, {listdata.Jenis_Instansi}</option>
                                     )}
                                 </select>
-                                <label>Prestasi_Point:</label><br />
-                                <input type='number' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Prestasi_Point' value={Prestasi_Point} required /><br />
+                                <label>Prestasi Point:</label><br />
+                                <input type='number' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Prestasi_Point' value={Prestasi_Point} placeholder='Masukkan jumlah point penambahan karna prestasi yang didapat' required /><br />
                                 <label>Keterangan:</label><br />
-                                <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Keterangan' value={Keterangan} /><br />
+                                <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Keterangan' value={Keterangan} placeholder='Masukkan keterangan tambahan jika ada' /><br />
                                 <label>Lampiran:</label><br />
                                 <input type='file' accept='image/*' onChange={this.File_OnChange} name='Lampiran' /><br />
                             </div>

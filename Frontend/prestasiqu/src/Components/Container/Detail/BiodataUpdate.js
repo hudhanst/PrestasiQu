@@ -55,17 +55,11 @@ class BiodataUpdateModal extends React.Component {
 
     Form_OnChange = E => {
         this.setState({ [E.target.name]: E.target.value })
-        // console.log('name', E.target.name)
-        // console.log('value', E.target.value)
     }
     File_OnChange = E => {
         this.setState({ [E.target.name]: E.target.files[0] })
-        // console.log('filename', E.target.name)
-        // console.log('filevalue', E.target.value)
     }
     Form_OnSubmit = E => {
-        // console.log('panggil')
-        // E.preventDefault()
         const updatedata = {
             id: this.state.id,
             NomerInduk: this.state.NomerInduk,
@@ -94,8 +88,7 @@ class BiodataUpdateModal extends React.Component {
         this.props.UpdateBiodata(updatedata, authdata)
     }
     render() {
-        const {isBiodataLoading} = this.props.biodata
-//         const { Update_Biodata } = this.props.biodata
+        const { isBiodataLoading } = this.props.biodata
         const { user } = this.props.auth
         // const {name} = (this.state? this.state : '') //this is shorter?
         const {
@@ -111,9 +104,12 @@ class BiodataUpdateModal extends React.Component {
             InstansiPendidikanTerakhir,
             Point,
             Status,
-            // Profilepicture,
         } = this.state
-        // console.log('state', this.state)
+        const StatusSiswaOption = ['Siswa Aktif', 'Siswa Lulus', 'Siswa Diberhentikan']
+        const StatusGuruOption = ['Guru Aktif', 'Guru Pensiun', 'Guru Diberhentikan']
+        const StatusStaffOption = ['Staf Aktif', 'Staf Pensiun', 'Staf Diberhentikan']
+        const AgamaOption = ['Buddha', 'Hindu', 'Islam', 'Katolik', 'KongHuCu', 'Kristen', 'Lainnya']
+        const PendidikanTerakhirOption = ['SD', 'SMP', 'SMA', 'S1', 'S2', 'S3']
         if (isBiodataLoading === true) {
             return (
                 <Loading />
@@ -124,30 +120,26 @@ class BiodataUpdateModal extends React.Component {
                     {NomerInduk ? (
                         <form onSubmit={this.Form_OnSubmit}>
                             <label>Nomer Induk:</label><br />
-                            <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} readOnly name='NomerInduk' value={NomerInduk} /><br />
+                            <input type='text' className='Input-as-Info Input-as-Update' readOnly name='NomerInduk' value={NomerInduk} /><br />
                             <label>Nama:</label><br />
-                            <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Nama' value={Nama} /><br />
+                            <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Nama' value={Nama} placeholder='Masukkan nama lengkap anda' /><br />
                             <label>Agama:</label><br />
-                            {/* <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Agama' value={Agama} /><br /> */}
-                            <select className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Agama' value={Agama}>
-                                <option value="Buddha">Buddha</option>
-                                <option value="Hindu">Hindu</option>
-                                <option value="Islam">Islam</option>
-                                <option value="Katolik">Katolik</option>
-                                <option value="KongHuCu">KongHuCu</option>
-                                <option value="Kristen">Kristen</option>
-                                <option value="Lainnya">Lainnya</option>
+                            <select className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Agama' value={Agama} >
+                                <option value="" disabled> -- select an option -- </option>
+                                {AgamaOption.map((listdata) =>
+                                    <option key={listdata} value={listdata}>{listdata}</option>
+                                )}
                             </select>
                             <label>Tempat Lahir:</label><br />
-                            <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='TempatLahir' value={TempatLahir} /><br />
+                            <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='TempatLahir' value={TempatLahir} placeholder='Masukkan tempat anda lahir' /><br />
                             <label>Tanggal Lahir:</label><br />
-                            <input type='date' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='TanggalLahir' value={TanggalLahir} /><br />
+                            <input type='date' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='TanggalLahir' value={TanggalLahir} placeholder='Masukkan tanggal lahir anda' /> <br />
                             <label>Alamat:</label><br />
-                            <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Alamat' value={Alamat} /><br />
+                            <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Alamat' value={Alamat} placeholder='Masukkan tempat anda tinggal' /><br />
                             <label>Nomer TLP:</label><br />
-                            <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='NomerTLP' value={NomerTLP} /><br />
+                            <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='NomerTLP' value={NomerTLP} placeholder='Masukkan nomer tlp anda' /><br />
                             <label>Email:</label><br />
-                            <input type='email' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Email' value={Email} /><br />
+                            <input type='email' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Email' value={Email} placeholder='Masukkan alamat email anda' /><br />
                             <label>Pendidikan Terakhir:</label><br />
                             {user ? (
                                 <div>
@@ -156,42 +148,43 @@ class BiodataUpdateModal extends React.Component {
                                             <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} readOnly name='PendidikanTerakhir' value={PendidikanTerakhir} /><br />
                                         </div>
                                     ) : (
-                                            // <select className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} disabled='disabled' name='PendidikanTerakhir' value={PendidikanTerakhir}>
-                                            <select className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='PendidikanTerakhir' value={PendidikanTerakhir}>
-                                                <option value="SD" >SD</option>
-                                                <option value="SMP">SMP</option>
-                                                <option value="SMA">SMA</option>
-                                                <option value="S1" >S1</option>
-                                                <option value="S2">S2</option>
-                                                <option value="S3">S3</option>
+                                            <select className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='PendidikanTerakhir' value={PendidikanTerakhir} placeholder='Pilih pendidikan terakhir anda' >
+                                                <option value="" disabled> -- select an option -- </option>
+                                                {PendidikanTerakhirOption.map((listdata) =>
+                                                    <option key={listdata} value={listdata}>{listdata}</option>
+                                                )}
+
                                             </select>
                                         )}
                                 </div>
                             ) : null}
-
                             <label>Instansi Pendidikan Terakhir:</label><br />
-                            <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='InstansiPendidikanTerakhir' value={InstansiPendidikanTerakhir} /><br />
-                            <label>Point:</label><br />
-                            <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} readOnly name='Point' value={Point} /><br />
-                            <label>Status:</label><br />
+                            <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='InstansiPendidikanTerakhir' value={InstansiPendidikanTerakhir} placeholder='Masukkan nama instansi pendidikan terakhir anda' /><br />
                             {user ? (
                                 <div>
                                     {(user.admin || user.superuser) ? (
-                                        <select className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Status' value={Status}>
-                                            <option value="Guru Aktif">Guru Aktif</option>
-                                            <option value="Guru Pensiun">Guru Pensiun</option>
-                                            <option value="Guru Diberhentikan">Guru Diberhentikan</option>
-                                            <option value="Staf Aktif">Staf Aktif</option>
-                                            <option value="Staf Pensiun">Staf Pensiun</option>
-                                            <option value="Staf Diberhentikan">Staf Diberhentikan</option>
-                                            <option value="Siswa Aktif">Siswa Aktif</option>
-                                            <option value="Siswa Lulus">Siswa Lulus</option>
-                                            <option value="Siswa Diberhentikan">Siswa Diberhentikan</option>
-                                        </select>
+                                        <div>
+                                            <label>Point:</label><br />
+                                            <input type='text' className='Input-as-Info Input-as-Update' readOnly name='Point' value={Point} /><br />
+                                            <label>Status:</label><br />
+                                            <select className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Status' value={Status} placeholder='Pilih status untuk user ini'>
+                                                <option value="" disabled> -- select an option -- </option>
+                                                <option value="" disabled>siswa option</option>
+                                                {StatusSiswaOption.map((listdata) =>
+                                                    <option key={listdata} value={listdata}>{listdata}</option>
+                                                )}
+                                                <option value="" disabled>guru option</option>
+                                                {StatusGuruOption.map((listdata) =>
+                                                    <option key={listdata} value={listdata}>{listdata}</option>
+                                                )}
+                                                <option value="" disabled>staff option</option>
+                                                {StatusStaffOption.map((listdata) =>
+                                                    <option key={listdata} value={listdata}>{listdata}</option>
+                                                )}
+                                            </select>
+                                        </div>
                                     ) : (
-                                            <div>
-                                                <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} readOnly name='Status' value={Status} /><br />
-                                            </div>
+                                            null
                                         )}
                                 </div>
                             ) : (
@@ -210,8 +203,10 @@ class BiodataUpdateModal extends React.Component {
         }
     }
 }
+
 const mapStateToProps = state => ({
     biodata: state.Biodata,
     auth: state.Auth
 })
+
 export default connect(mapStateToProps, { LoadBiodataUpdate, UpdateBiodata })(BiodataUpdateModal)

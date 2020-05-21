@@ -67,7 +67,7 @@ class PointSubmission extends React.Component {
                                     )}
                                 </select>
                                 <label>Keterangan:</label><br />
-                                <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Keterangan' value={Keterangan} /><br />
+                                <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Keterangan' value={Keterangan} placeholder='Masukkan keterangan tambahan jika diperlukan' /><br />
                                 <label>Lampiran:</label><br />
                                 <input type='file' accept='image/*' onChange={this.File_OnChange} name='Lampiran' /><br />
                                 <div className="modal-footer"></div>

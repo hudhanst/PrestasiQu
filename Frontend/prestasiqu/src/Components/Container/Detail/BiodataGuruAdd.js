@@ -63,47 +63,42 @@ class BiodataGuruAdd extends React.Component {
             InstansiPendidikanTerakhir,
             // Profilepicture,
         } = this.state
+        const AgamaOption = ['Buddha', 'Hindu', 'Islam', 'Katolik', 'KongHuCu', 'Kristen', 'Lainnya']
+        const PendidikanTerakhirOption = ['SD', 'SMP', 'SMA', 'S1', 'S2', 'S3']
         return (
             <div>
                 <h2 className='position-center'>-Create Guru Biodata-</h2><br />
                 <form onSubmit={this.Form_OnSubmit}>
                     <label>NomerInduk:</label><br />
-                    <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='NomerInduk' value={NomerInduk} required /><br />
+                    <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='NomerInduk' value={NomerInduk} placeholder='Masukkan nomerinduk staff' required /><br />
                     <label>Nama:</label><br />
-                    <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Nama' value={Nama} /><br required />
+                    <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Nama' value={Nama} placeholder='Masukkan nama lengkap staff' required /><br />
                     <label>Agama:</label><br />
-                    <select className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Agama' value={Agama}>
+                    <select className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Agama' value={Agama} >
                         <option value="" disabled> -- select an option -- </option>
-                        <option value="Buddha">Buddha</option>
-                        <option value="Hindu">Hindu</option>
-                        <option value="Islam">Islam</option>
-                        <option value="Katolik">Katolik</option>
-                        <option value="KongHuCu">KongHuCu</option>
-                        <option value="Kristen">Kristen</option>
-                        <option value="Lainnya">Lainnya</option>
+                        {AgamaOption.map((listdata) =>
+                            <option key={listdata} value={listdata}>{listdata}</option>
+                        )}
                     </select>
                     <label>TempatLahir:</label><br />
-                    <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='TempatLahir' value={TempatLahir} required /><br />
+                    <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='TempatLahir' value={TempatLahir} placeholder='Masukkan tempat staff lahir' required /><br />
                     <label>TanggalLahir:</label><br />
-                    <input type='date' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='TanggalLahir' value={TanggalLahir} required /><br />
+                    <input type='date' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='TanggalLahir' value={TanggalLahir} placeholder='Masukkan tanggal lahir staff' required /><br />
                     <label>Alamat:</label><br />
-                    <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Alamat' value={Alamat} /><br />
+                    <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Alamat' value={Alamat} placeholder='Masukkan tempat staff tinggal' /><br />
                     <label>NomerTLP:</label><br />
-                    <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='NomerTLP' value={NomerTLP} /><br />
+                    <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='NomerTLP' value={NomerTLP} placeholder='Masukkan nomer tlp staff' /><br />
                     <label>Email:</label><br />
-                    <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Email' value={Email} /><br />
+                    <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Email' value={Email} placeholder='Masukkan alamat email staff' /><br />
                     <label>PendidikanTerakhir:</label><br />
                     <select className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='PendidikanTerakhir' value={PendidikanTerakhir}>
                         <option value="" disabled> -- select an option -- </option>
-                        <option value="SD">SD</option>
-                        <option value="SMP">SMP</option>
-                        <option value="SMA">SMA</option>
-                        <option value="S1">S1</option>
-                        <option value="S2">S2</option>
-                        <option value="S3">S3</option>
+                        {PendidikanTerakhirOption.map((listdata) =>
+                            <option key={listdata} value={listdata}>{listdata}</option>
+                        )}
                     </select>
                     <label>InstansiPendidikanTerakhir:</label><br />
-                    <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='InstansiPendidikanTerakhir' value={InstansiPendidikanTerakhir} /><br />
+                    <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='InstansiPendidikanTerakhir' value={InstansiPendidikanTerakhir} placeholder='Masukkan nama instansi pendidikan terakhir staff' /><br />
                     <label>Profilepicture:</label><br />
                     <input type='file' accept='image/*' onChange={this.File_OnChange} name='Profilepicture' /><br />
 

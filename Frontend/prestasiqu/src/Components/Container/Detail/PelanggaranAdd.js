@@ -39,24 +39,25 @@ class PelanggaranAdd extends React.Component {
             Pelanggaran_Point,
             Keterangan_Pelanggaran,
         } = this.state
+        const JenisPelanggaranOption = ['Ringan', 'Sedang', 'Berat']
         return (
             <div>
                 <h2 className='position-center'>-Create Pelanggaran Detail-</h2><br />
                 <form onSubmit={this.Form_OnSubmit}>
                     <div>
                         <label>Nama Pelanggaran:</label><br />
-                        <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Nama_Pelanggaran' value={Nama_Pelanggaran} required /><br />
+                        <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Nama_Pelanggaran' value={Nama_Pelanggaran} placeholder='Masukkan nama pelanggaran' required /><br />
                         <label>Jenis Pelanggaran:</label><br />
                         <select className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Jenis_Pelanggaran' value={Jenis_Pelanggaran} required >
                             <option value="" disabled> -- select an option -- </option>
-                            <option value="Ringan">Ringan</option>
-                            <option value="Sedang">Sedang</option>
-                            <option value="Berat">Berat</option>
+                            {JenisPelanggaranOption.map((listdata) =>
+                                <option key={listdata} value={listdata}>{listdata}</option>
+                            )}
                         </select>
                         <label>Pelanggaran Point:</label><br />
-                        <input type='number' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Pelanggaran_Point' value={Pelanggaran_Point} required /><br />
+                        <input type='number' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Pelanggaran_Point' value={Pelanggaran_Point} placeholder='Masukkan jumlah point pengurang karna pelanggaran' required /><br />
                         <label>KeteranganPelanggaran:</label><br />
-                        <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Keterangan_Pelanggaran' value={Keterangan_Pelanggaran} /><br />
+                        <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Keterangan_Pelanggaran' value={Keterangan_Pelanggaran} placeholder='Masukkan keterangan mengenai pelanggaran' /><br />
                     </div>
                     <div className="modal-footer">
                         <button type="submit" className="btn btn-lg btn-block btn-colorize-green">Create</button>

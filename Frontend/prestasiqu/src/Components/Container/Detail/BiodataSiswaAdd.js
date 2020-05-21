@@ -43,13 +43,9 @@ class BiodataSiswaAdd extends React.Component {
     }
     Form_OnChange = E => {
         this.setState({ [E.target.name]: E.target.value })
-        // console.log('name', E.target.name)
-        // console.log('value', E.target.value)
     }
     File_OnChange = E => {
         this.setState({ [E.target.name]: E.target.files[0] })
-        // console.log('filename', E.target.name)
-        // console.log('filevalue', E.target.value)
     }
     render() {
         const {
@@ -62,40 +58,36 @@ class BiodataSiswaAdd extends React.Component {
             NomerTLP,
             Email,
             InstansiPendidikanTerakhir,
-            // Profilepicture,
         } = this.state
+        const AgamaOption = ['Buddha', 'Hindu', 'Islam', 'Katolik', 'KongHuCu', 'Kristen', 'Lainnya']
         return (
             <div>
                 <h2 className='position-center'>-Create Siswa Biodata-</h2><br />
                 <form onSubmit={this.Form_OnSubmit}>
-                    <label>NomerInduk:</label><br />
-                    <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='NomerInduk' value={NomerInduk} required /><br />
+                    <label>Nomer Induk:</label><br />
+                    <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='NomerInduk' value={NomerInduk} placeholder='Masukkan nomerinduk siswa' required /><br />
                     <label>Nama:</label><br />
-                    <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Nama' value={Nama} /><br required />
+                    <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Nama' value={Nama} placeholder='Masukkan nama lengkap siswa' required /><br />
                     <label>Agama:</label><br />
-                    <select className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Agama' value={Agama}>
-                                <option value="" disabled> -- select an option -- </option>
-                                <option value="Buddha">Buddha</option>
-                                <option value="Hindu">Hindu</option>
-                                <option value="Islam">Islam</option>
-                                <option value="Katolik">Katolik</option>
-                                <option value="KongHuCu">KongHuCu</option>
-                                <option value="Kristen">Kristen</option>
-                                <option value="Lainnya">Lainnya</option>
-                            </select>
-                    <label>TempatLahir:</label><br />
-                    <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='TempatLahir' value={TempatLahir} required /><br />
-                    <label>TanggalLahir:</label><br />
-                    <input type='date' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='TanggalLahir' value={TanggalLahir} required /><br />
+                    <select className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Agama' value={Agama} placeholder='Pilih agama siswa'>
+                        <option value="" disabled> -- select an option -- </option>
+                        {AgamaOption.map((listdata) =>
+                            <option key={listdata} value={listdata}>{listdata}</option>
+                        )}
+                    </select>
+                    <label>Tempat Lahir:</label><br />
+                    <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='TempatLahir' value={TempatLahir} placeholder='Masukkan tempat siswa lahir' required /><br />
+                    <label>Tanggal Lahir:</label><br />
+                    <input type='date' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='TanggalLahir' value={TanggalLahir} placeholder='Masukkan tanggal lahir siswa' required /><br />
                     <label>Alamat:</label><br />
-                    <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Alamat' value={Alamat} /><br />
-                    <label>NomerTLP:</label><br />
-                    <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='NomerTLP' value={NomerTLP} /><br />
+                    <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Alamat' value={Alamat} placeholder='Masukkan tempat siswa tinggal' /><br />
+                    <label>Nomer TLP:</label><br />
+                    <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='NomerTLP' value={NomerTLP} placeholder='Masukkan nomer tlp siswa' /><br />
                     <label>Email:</label><br />
-                    <input type='email' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Email' value={Email} /><br />
-                    <label>InstansiPendidikanTerakhir:</label><br />
-                    <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='InstansiPendidikanTerakhir' value={InstansiPendidikanTerakhir} /><br />
-                    <label>Profilepicture:</label><br />
+                    <input type='email' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='Email' value={Email} placeholder='Masukkan alamat email siswa' /><br />
+                    <label>Instansi Pendidikan Terakhir:</label><br />
+                    <input type='text' className='Input-as-Info Input-as-Update' onChange={this.Form_OnChange} name='InstansiPendidikanTerakhir' value={InstansiPendidikanTerakhir} placeholder='Masukkan nama instansi pendidikan terakhir siswa' /><br />
+                    <label>Profile picture:</label><br />
                     <input type='file' accept='image/*' onChange={this.File_OnChange} name='Profilepicture' /><br />
 
                     <div className="modal-footer">

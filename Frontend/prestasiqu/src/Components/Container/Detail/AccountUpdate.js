@@ -123,9 +123,9 @@ class AccountUpdateModal extends React.Component {
                             {changepassword ? (
                                 <div>
                                     <label>New Password:</label><br />
-                                    <input type='password' className={`Input-as-Info Input-as-Update ${password1 === password2 ? null : 'form-error'}`} onChange={this.Form_OnChange} name='password1' value={password1} /><br />
+                                    <input type='password' className={`Input-as-Info Input-as-Update ${password1 === password2 ? null : 'form-error'}`} onChange={this.Form_OnChange} name='password1' value={password1} placeholder='Masukkan password baru anda' /><br />
                                     <label>Confirm New Password:</label><br />
-                                    <input type='password' className={`Input-as-Info Input-as-Update ${password1 === password2 ? null : 'form-error'}`} onChange={this.Form_OnChange} name='password2' value={password2} /><br />
+                                    <input type='password' className={`Input-as-Info Input-as-Update ${password1 === password2 ? null : 'form-error'}`} onChange={this.Form_OnChange} name='password2' value={password2} placeholder='Masukkan konfirmasi password baru' /><br />
                                     {password1 === password2 ? null : (
                                         <div className='form-error-massages'>
                                             password did not match

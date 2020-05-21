@@ -1,21 +1,21 @@
 import React from 'react'
 
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 
-import {LogOut} from '../../Store/Actions/Auth.Actions'
+import { LogOut } from '../../Store/Actions/Auth.Actions'
 
-class Navbar extends React.Component{
-    render(){
-        const {isAuthenticated} = this.props.auth
-        const NavForGuest=(
+class Navbar extends React.Component {
+    render() {
+        const { isAuthenticated } = this.props.auth
+        const NavForGuest = (
             <div>
             </div>
         )
-        if (isAuthenticated === false || isAuthenticated === null){
-            return(
+        if (isAuthenticated === false || isAuthenticated === null) {
+            return (
                 NavForGuest
             )
-        }else{
+        } else {
             const logo = process.env.PUBLIC_URL + '/IMG/Logo.png'
             return (
                 <div>
@@ -32,14 +32,14 @@ class Navbar extends React.Component{
                             <ul className="navbar-nav custom-nav-menu">
                                 <li className="nav-item dropdown active custom-nav-item">
                                     <a className="nav-link" href="/biodata">
-                                    {/* <a class="nav-link dropdown-toggle" href="/biodata" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> */}
+                                        {/* <a class="nav-link dropdown-toggle" href="/biodata" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> */}
                                         Biodata
                                     </a>
                                     <div className="dropdown-menu custom-dropdown-menu" id="biodatadropdown">
                                         <a className="dropdown-item custom-dropdown-item" href="/biodata/data-siswa">Data Siswa</a>
                                         <a className="dropdown-item custom-dropdown-item" href="/biodata/data-guru">Data Guru</a>
                                         <a className="dropdown-item custom-dropdown-item" href="/biodata/data-admin">Data Admin</a>
-                                        <a className="dropdown-item custom-dropdown-item" href="/biodata/data-kelas">Data Kelas</a>
+                                        {/* <a className="dropdown-item custom-dropdown-item" href="/biodata/data-kelas">Data Kelas</a> */}
                                         <a className="dropdown-item custom-dropdown-item" href="/biodata/data-instansi">Data Instansi</a>
                                         <a className="dropdown-item custom-dropdown-item" href="/biodata/data-pelanggaran">Data Pelanggaran</a>
                                     </div>
@@ -73,7 +73,7 @@ class Navbar extends React.Component{
         }
     }
 }
-const mapStateToProps=state=>({
-    auth:state.Auth
+const mapStateToProps = state => ({
+    auth: state.Auth
 })
-export default connect(mapStateToProps,{LogOut})(Navbar)
+export default connect(mapStateToProps, { LogOut })(Navbar)
