@@ -139,78 +139,41 @@ class Update_Account_Detail_API(generics.RetrieveUpdateAPIView):
     permission_classes = [
         permissions.AllowAny,
     ]
-    # serializer_class = Update_Account_Detail_Serializer
+    serializer_class = Update_Account_Detail_Serializer
 
-    def get_serializer_class(self):
-        # self.request.user.admin = False
-        # self.request.user.superuser = True
-        if self.request.user.admin or self.request.user.superuser:
-            return Update_Account_Detail_Serializer
-        return Update_Account_Password_Serializer
+    # def get_serializer_class(self):
+    # self.request.user.admin = False
+    # self.request.user.superuser = True
+    # if self.request.user.admin or self.request.user.superuser:
+    # return Update_Account_Detail_Serializer
+    # return Update_Account_Password_Serializer
 
     queryset = User.objects.all()
     lookup_field = 'profile'
 
-    # def patch(self, request, *args, **kwargs):
-    #     serializer = self.get_serializer(data=request.data)
-    #     logging.warning('blm valid')
-    #     if serializer.is_valid():
-    #         logging.warning('valid')
-    #         serializer.validated_data['nomerinduk'] = serializer.validated_data['nomerinduk']
-    #         serializer.validated_data['password'] = make_password(serializer.validated_data['password'])
-    #         serializer.save()
-    #         # user = serializer.validated_data
-    #         return Response(serializer.data)
-    #     else:
-    #         return Response(serializer.errors)
+    # def get_object(self, profile):
+    #     return User.objects.get(profile=profile)
 
-    # def patch(self, request, *args, **kwargs):
-    #     logging.warning('data', request.data)
-    #     serializer = self.get_serializer(data=request.data)
-    #     # logging.warning('serializer', serializer)
-    #     logging.warning('serializer', serializer.validated_data['active'])
-    #     logging.warning('blm valid')
-    #     if serializer.is_valid():
-    #         logging.warning('valid')
-    #         serializer.save()
-    #         # user = serializer.validated_data
-    #         return Response(serializer.data)
-    #     else:
-    #         return Response(serializer.errors)
-    # Message: 'serializer'
-    # Arguments: (Update_Account_Detail_Serializer(context={'request': <rest_framework.request.Request object>,
-    # 'format': None, 'view': <account.API.api.Update_Account_Detail_API object>},
-    # data=<QueryDict: {
-    #     'nomerinduk': ['huda'],
-    #     'active': ['true'],
-    #     'siswa': ['true'],
-    #     'staff': ['true'],
-    #     'admin': ['true'],
-    #     'supervisor': ['true'],
-    #     'superuser': ['true']}>):
+    def patch(self, request, *args, **kwargs):
+        # logging.warning('profile',profile)
+        pk = self.kwargs.get('profile')
+        # logging.warning('profile', pk)
 
-    # def patch(self, request, *args, **kwargs):
-    #     serializer = self.get_serializer(data=request.data)
-    #     logging.warning('blm valid')
-    #     if serializer.is_valid():
-    #         logging.warning('valid')
-    #         serializer.validated_data['password'] = make_password(serializer.validated_data['password'])
-    #         # serializer.validated_data['profile'] = User.objects.get(nomerinduk=serializer.validated_data['profile']).profile
+        originalmodel_object = User.objects.get(profile=pk)
+        # logging.warning('originalmodel_object', originalmodel_object)
+        serializer = self.get_serializer(
+            originalmodel_object, data=request.data, partial=True)
+        dataaa = request.data
+        # logging.warning(dataaa,'dataaa')
+        if serializer.is_valid():
+            # if serializer.validated_data['password'] != None:
+            logging.warning(len(serializer.validated_data))
+            if len(serializer.validated_data) > 7:
+                serializer.validated_data['password'] = make_password(
+                    serializer.validated_data['password'])
 
-    #         # if self.request.user.admin or self.request.user.superuser:
-    #         #     logging.warning('terpanggil2')
-    #         #     serializer.validated_data['active'] = serializer.validated_data['active']
-    #         #     serializer.validated_data['siswa'] = serializer.validated_data['siswa']
-    #         #     serializer.validated_data['staff'] = serializer.validated_data['staff']
-    #         #     serializer.validated_data['admin'] = serializer.validated_data['admin']
-    #         #     serializer.validated_data['supervisor'] = serializer.validated_data['supervisor']
-    #         #     serializer.validated_data['superuser'] = serializer.validated_data['superuser']
-    #         #     # logging.warning('terpanggil3',serializer.validated_data['profile'])
-
-    #         # else:
-    #         #     None
-    #         serializer.save()
-    #         user = serializer.validated_data
-    #         return Response(serializer.data)
-    #     else:
-    #         return Response(serializer.errors)
+            serializer.save()
+            user = serializer.validated_data
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors)
