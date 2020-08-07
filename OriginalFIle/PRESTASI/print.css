@@ -1,0 +1,55 @@
+@media print {
+    * {
+        background: transparent !important;
+        color: #000;
+        border: #000;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    .BiodataContainer #tombol,
+    .BiodataContainer #UserName,
+    .BiodataContainer #tombol1 {
+        display: none;
+    }
+
+    .BiodataContainer input {
+        width: 90% !important;
+        margin-left: 100px !important;
+        margin-top: 10px !important;
+        margin-bottom: 10px !important;
+    }
+
+    .NavigatorMenu,
+    .NavigatorMenu #NavigatorKiri,
+    .NavigatorMenu #NavigatorKanan {
+        display: none !important;
+        border: 1px solid red !important;
+    }
+    .TombolTombol,
+    .SearchBox {
+        display: none !important;
+    }
+    .Container{
+        padding: 10px !important;
+        margin: 0px !important;
+    }
+    .biodata .Container{
+        padding: 10px !important;
+        margin-top: 150px !important;
+    }
+    .Container input[type="submit"],
+    .Container input[type="button"],
+    .Container button{
+        display: none !important;
+    }
+    h1{
+        text-align: center;
+    }
+    
+    
+
+    .username {
+        display: none;
+    }
+}
