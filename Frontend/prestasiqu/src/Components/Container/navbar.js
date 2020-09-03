@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 
 import { LogOut } from '../../Store/Actions/Auth.Actions'
 
+import Logo from '../../IMG/Logo.png'
+
 class Navbar extends React.Component {
     render() {
         const { isAuthenticated } = this.props.auth
@@ -16,13 +18,12 @@ class Navbar extends React.Component {
                 NavForGuest
             )
         } else {
-            const logo = process.env.PUBLIC_URL + '/IMG/Logo.png'
             return (
                 <div>
                     <nav className="navbar navbar-expand-lg navbar-light custom-navbar">
                         <a className="navbar-brand nav-logo" href="/">
-                            <img src={logo} className="d-inline-block align-top imgnavbarlogo" alt="logo" />
-                            <label className="navbartextlogo">SMKN 26</label>
+                            <img src={Logo} className="d-inline-block align-top imgnavbarlogo" alt="logo" />
+                            <label className="navbartextlogo">Prestasi Qu</label>
                         </a>
                         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>

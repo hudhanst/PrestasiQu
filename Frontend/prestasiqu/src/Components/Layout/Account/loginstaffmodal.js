@@ -3,6 +3,10 @@ import { Redirect } from 'react-router-dom';
 import {connect} from 'react-redux'
 import {LogIn} from '../../../Store/Actions/Auth.Actions'
 
+import Logo from '../../../IMG/Logo.png'
+import LockSVG from '../../../IMG/ICO/lock.svg'
+import AccountSVG from '../../../IMG/ICO/account.svg'
+
 class LoginStaffModal extends React.Component{
     state={
         nomerinduk:'',
@@ -21,9 +25,6 @@ class LoginStaffModal extends React.Component{
             return <Redirect to="/" />
           }
           const {nomerinduk,password}=this.state
-          const logo = process.env.PUBLIC_URL + '/IMG/Logo.png'
-          const locksvg = process.env.PUBLIC_URL + '/ICO/lock.svg'
-          const accountsvg = process.env.PUBLIC_URL + '/ICO/account.svg'
         return(
             <div className="modal fade" id="loginstaffmodal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog" role="document">
@@ -35,20 +36,20 @@ class LoginStaffModal extends React.Component{
                     </button>
                 {/* </div> */}
                         <div className="modal-body">
-                            <img src={logo} alt="Logo" className="text-rounded mx-auto d-block" />
+                            <img src={Logo} alt="Logo" className="text-rounded mx-auto d-block" />
                             <h2 className="font-weight-bold text-center">Login Guru dan Admin</h2>
                             <form onSubmit={this.onSubmit}>
                                 <div className="form-group">
                                     <label>Nomer Induk</label>
                                     <div className="input-group">
-                                        <span className="input-group-text" id="basic-addon1"><img src={accountsvg} alt="logoaccount" /></span>
+                                        <span className="input-group-text" id="basic-addon1"><img src={AccountSVG} alt="logoaccount" /></span>
                                         <input className="form-control" type="text" name="nomerinduk" onChange={this.onChange} value={nomerinduk} placeholder="Nomer Registrasi / Nomer Induk" />
                                     </div>
                                 </div>
                                 <div className="form-group">
                                     <label>Password</label>
                                     <div className="input-group">
-                                        <span className="input-group-text" id="basic-addon1"><img src={locksvg} alt="logopassword" /></span>
+                                        <span className="input-group-text" id="basic-addon1"><img src={LockSVG} alt="logopassword" /></span>
                                         <input className="form-control" type="password" name="password" onChange={this.onChange} value={password} placeholder="Password anda" />
                                     </div>
                                 </div>
